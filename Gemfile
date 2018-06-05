@@ -16,6 +16,12 @@ gem 'sass-rails'
 gem 'simple_form'
 gem 'uglifier'
 gem 'webpacker'
+gem 'devise'
+gem 'pundit'
+gem 'annotate'
+gem 'cloudinary'
+gem 'carrierwave', '~> 1.2'
+gem 'pg_search'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
