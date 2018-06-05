@@ -1,0 +1,55 @@
+<div class="navbar-wagon">
+  <!-- Logo -->
+  <div class="search-bar">
+    ceci est une serachbar
+  </div>
+
+  <div class="flex-avatar">
+    <div class="avatar-lg">
+
+<% if current_user.nil? || current_user.photo.blank? %>
+  <%= image_tag "", class: "avatar-lg fa fa-user",height: 300, width: 400, crop: :fill, alt:"", id: "avatar-navbar" %>
+<% else %>
+  <%= cl_image_tag current_user.photo, height: 300, width: 400, crop: :fill, class: "avatar-lg", id: "avatar-navbar", "data-toggle" => "dropdown" %>
+<% end %>
+    </div>
+  </div>
+  <div class="flex-group">
+    <% if user_signed_in? %>
+
+      <div class="flex-item">
+        <%= link_to "logout", destroy_user_session_path, method: :delete %>
+      </div>
+
+      <div class="flex-item">
+        Playlist
+      </div>
+
+      <div class="flex-item">
+        <%= link_to "profile", edit_user_registration_path %>
+      </div>
+
+    <% else %>
+
+      <div class="flex-item">
+        <%= link_to "login", new_user_session_path %>
+      </div>
+      <div class="flex-item">
+        <%= link_to "sign-up", new_user_registration_path %>
+      </div>
+
+    <% end %>
+  </div>
+  <div class="flex-item">
+    <a href="#"><i class="fa fa-github"></i></a>
+    <a href="#"><i class="fa fa-instagram"></i></a>
+    <a href="#"><i class="fa fa-facebook"></i></a>
+    <a href="#"><i class="fa fa-twitter"></i></a>
+    <a href="#"><i class="fa fa-linkedin"></i></a>
+  </div>
+
+
+  <div class="music-player">
+
+  </div>
+</div>
