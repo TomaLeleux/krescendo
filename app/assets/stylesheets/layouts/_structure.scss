@@ -6,7 +6,6 @@ $banner-height: 70px;
   display: flex;
 }
 .left-container{
-  padding-top: 40px;
   width:200px;
   height: 100%;
    background-color: yellow;
@@ -18,7 +17,8 @@ $banner-height: 70px;
   padding: 40px;
   width: calc(100% - 200px);
   height: 100%;
-  background-color: #a02a63;
+  background-color: $color2;
+  color: white;
   margin-top: $banner-height;
   margin-left: 200px;
 }
