@@ -1,0 +1,29 @@
+.container-home-artist {
+  padding: 20px 20px;
+  height: 40%;
+  background: linear-gradient(rgba(13,18,25,0.9),rgba(13,18,25,0.7));
+  border-radius: 4px;
+  box-shadow: 1px 1px 2px $color2;
+}
+
+.container-home-news {
+  margin-top: 30px;
+  height: 50%;
+  background: linear-gradient(rgba(13,18,25,0.7),rgba(13,18,25,0.9));
+  border-radius: 4px;
+  padding: 20px 20px;
+  box-shadow: 1px 1px 2px $color2;
+}
+
+.container-artist-information{
+  display: flex;
+  background: linear-gradient(rgba(13,18,25,0.7),rgba(13,18,25,0.9));
+  border-radius: 4px;
+  box-shadow: 1px 1px 2px $color2;
+  width: calc(100% - 6px);
+}
+
+.container-show{
+  width:100%;
+  padding: 10px;
+}
