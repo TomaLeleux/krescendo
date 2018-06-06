@@ -2,15 +2,18 @@
 .photo-artist {
   text-align: center;
   width: 20%;
-  background-color: $color2;
+  padding: 20px;
+  #photo-art{
+    width:100%;
+    height:100%;
+    fit-auto: cover;
+  }
 }
 .info-artist {
   width: 20%;
-  background-color: navy;
 }
 .album-carroussel {
   width: 60%;
-  background-color: yellow;
 }
 .details-body{
   display: flex;
@@ -22,8 +25,10 @@
     text-align: center;
     color: $color2;
   }
-  background-color: green;
+  background: linear-gradient(rgba(13,18,25,0.9),rgba(13,18,25,0.7));
   width: 20%;
+  border-radius: 4px;
+  box-shadow: 1px 1px 2px $color2;
 }
 
 .right-side{
