@@ -1,0 +1,3 @@
+<% fetcher = Lyricfy::Fetcher.new %>
+<% song = fetcher.search 'Led zeppelin', 'Since i\'ve been loving you' %>
+<p><%= song.body('<br>').html_safe %></p>
