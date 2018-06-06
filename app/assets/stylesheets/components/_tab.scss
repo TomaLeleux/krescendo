@@ -1,0 +1,33 @@
+.tab-self a {
+  background: none!important;
+  border: none !important;
+  color: $color3 !important;
+  padding: 10px 60px !important;
+  &:hover {
+    color: white!important;
+    transition: 0.7s!important;
+  }
+}
+
+.nav-tabs {
+  border: none !important;
+  justify-content: space-around !important;
+}
+
+ul .active {
+  border-bottom: 2px solid $color3!important;
+  * {
+  color: white !important;
+  }
+}
+
+.container-home-artist {
+  height: 40%;
+  background: linear-gradient(rgba(13,18,25,0.1),rgba(13,18,25,0.3));
+}
+
+.container-home-news {
+  margin-top: 30px;
+  height: 50%;
+  background: linear-gradient(rgba(13,18,25,0.3),rgba(13,18,25,0.1));
+}
