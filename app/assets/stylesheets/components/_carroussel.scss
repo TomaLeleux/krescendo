@@ -1,0 +1,23 @@
+.carousel-control {
+  background: none!important;
+  &:focus {
+    opacity: 0.5;
+  }
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.carousel-inner {
+  margin-top: 15px;
+}
+
+.carousel {
+  height: 300px;
+  padding: 25px 0;
+  background: none!important;
+}
+
+.carousel-indicators {
+  bottom: -10px!important;
+}
