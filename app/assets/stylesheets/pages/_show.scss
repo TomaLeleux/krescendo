@@ -1,1 +1,35 @@
 
+.photo-artist {
+  text-align: center;
+  width: 20%;
+  background-color: $color2;
+}
+.info-artist {
+  width: 20%;
+  background-color: navy;
+}
+.album-carroussel {
+  width: 60%;
+  background-color: yellow;
+}
+.details-body{
+  display: flex;
+  width: 100%;
+}
+.left-side{
+  margin-top: 10px;
+  h3 {
+    text-align: center;
+    color: $color2;
+  }
+  background-color: green;
+  width: 20%;
+}
+
+.right-side{
+  width: 80%
+}
+
+ul {
+  list-style:none;
+}
