@@ -5,7 +5,13 @@
     height: 150px;
   }
   .artist-name {
-
+    margin-bottom: 0;
+    margin-top: 15px;
+    font-size: 23px;
+  }
+  .artist-style {
+    opacity: .5;
+    font-size: 16px;
   }
 }
 
@@ -16,6 +22,10 @@
   &:hover {
     opacity: 0.9;
   }
+}
+
+.carousel-inner {
+  margin-top: 15px;
 }
 
 .clickable-card, .clickable-card:hover {
