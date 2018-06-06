@@ -17,24 +17,24 @@
   <div class="flex-group">
     <% if user_signed_in? %>
 
-      <div class="flex-item">
+      <div class="flex-item navlink">
         <%= link_to "logout", destroy_user_session_path, method: :delete %>
       </div>
 
-      <div class="flex-item">
+      <div class="flex-item navlink">
         Playlist
       </div>
 
-      <div class="flex-item">
+      <div class="flex-item navlink">
         <%= link_to "profile", edit_user_registration_path %>
       </div>
 
     <% else %>
 
-      <div class="flex-item">
+      <div class="flex-item navlink">
         <%= link_to "login", new_user_session_path %>
       </div>
-      <div class="flex-item">
+      <div class="flex-item navlink">
         <%= link_to "sign-up", new_user_registration_path %>
       </div>
 
