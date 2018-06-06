@@ -1,0 +1,33 @@
+.artist {
+  .artist-photo {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+  }
+  .artist-name {
+
+  }
+}
+
+.carousel-control {
+  &:focus {
+    opacity: 0.5;
+  }
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.clickable-card, .clickable-card:hover {
+  text-decoration: none;
+  color: inherit;
+}
+
+.carousel {
+  height: 300px;
+  padding: 25px 0;
+}
+
+.carousel-indicators {
+  bottom: -10px!important;
+}
