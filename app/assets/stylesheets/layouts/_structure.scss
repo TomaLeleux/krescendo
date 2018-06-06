@@ -8,7 +8,6 @@ $banner-height: 70px;
 .left-container{
   width:200px;
   height: 100%;
-  background-color: yellow;
   position: fixed;
   top: $banner-height;
 }
@@ -17,7 +16,7 @@ $banner-height: 70px;
   padding: 40px;
   width: calc(100% - 200px);
   height: 100%;
-  background-color: $color2;
+  background-color: $color4;
   color: white;
   margin-top: $banner-height;
   margin-left: 200px;
