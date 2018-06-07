@@ -4,7 +4,7 @@
   </div>
   <div class="info-artist">
     <h3 id="artist-name"><%= @artist["name"] %></h3>
-    <%= link_to "see wiki", "https://www.rollingstone.com/music/artists/nirvana/biography", id: "wiki-link" %>
+    <%= link_to "see wiki", @artist["link"], target: "_blank", id: "wiki-link" %>
     <%= link_to "add to playlist", ""  %>
     <p>rating</p>
   </div>
