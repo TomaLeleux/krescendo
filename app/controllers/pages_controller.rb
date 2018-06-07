@@ -7,6 +7,6 @@ class PagesController < ApplicationController
 
   def show
     @artist = DeezerApiService.call(params[:id])
-    # @albums = DeezerApiService.albums(id)
+    @albums = DeezerApiService.albums(params[:id])
   end
 end

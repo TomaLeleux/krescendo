@@ -3,13 +3,18 @@ require 'json'
 
 class DeezerApiService
   def self.call(id)
-    # musics = []
-    # 40.times do |i|
-      response = RestClient.get "https://api.deezer.com/artist/#{id}"
-      # musics << JSON.parse(response)
-      return JSON.parse(response)
-    # end
-    # return musics
+    response = RestClient.get "https://api.deezer.com/artist/#{id}"
+    return JSON.parse(response)
+  end
+
+  def self.albums(artist_id)
+    response = RestClient.get "https://api.deezer.com/artist/#{artist_id}/albums"
+    return JSON.parse(response)
+  end
+
+  def self.tracks(album_id)
+    response = RestClient.get "https://api.deezer.com/album/#{album_id}/tracks"
+    return JSON.parse(response)
   end
 
   def self.valid_artist
