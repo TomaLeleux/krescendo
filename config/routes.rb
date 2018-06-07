@@ -5,5 +5,5 @@ Rails.application.routes.draw do
     resources :playlists, only: [:index, :create, :update, :destroy]
   end
   get '/search', to: 'pages#index', as: 'search'
-  get '/details', to: 'pages#show', as: 'details'
+  get '/details/:id', to: 'pages#show', as: 'details'
 end
