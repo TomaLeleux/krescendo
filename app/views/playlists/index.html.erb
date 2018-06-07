@@ -1,0 +1,6 @@
+<% @playlists.each do |playlist| %>
+  <%= render 'components/playlist', playlist: playlist %>
+<% end %>
+<div class="text-center">
+  <button class='btn btn-primary'>Create a playlist</button>
+</div>

@@ -1,20 +1,20 @@
 class PlaylistPolicy < ApplicationPolicy
   class Scope < Scope
     def resolve
-      scope.all
+      scope.where(user: user)
     end
   end
 
   def index?
-    return true
+    !user.nil?
   end
 
   def show?
-    return true
+    !user.nil?
   end
 
   def create?
-    return true
+    !user.nil?
   end
 
   def new?

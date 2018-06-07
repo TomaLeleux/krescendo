@@ -13,4 +13,7 @@
 
 class Playlist < ApplicationRecord
   belongs_to :user
+  has_many :tracks, dependent: :destroy
+
+  validates :name, presence: true, uniqueness: { scope: :user, message: "must be unique" }
 end

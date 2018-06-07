@@ -1,0 +1,28 @@
+<div class="container-common playlist">
+  <div class="flex-container">
+    <i class="fa fa-caret-right fa-3" aria-hidden="true"></i>
+    <h3 class='inline'><%= playlist.name %></h3>
+  </div>
+  <div class="tracks-list playlist-description">
+    <table>
+      <tr>
+        <th>Track name</th>
+        <th>Album</th>
+        <th>Artist</th>
+        <th>Actions</th>
+      </tr>
+      <% playlist.tracks.each do |track| %>
+        <tr data-track-id='<%= track.id %>'>
+          <td><%= track.track_name %></td>
+          <td><%= track.album_name %></td>
+          <td><%= track.artist_name %></td>
+          <td><i class="fa fa-eye" aria-hidden="true"></i> <i class="fa fa-play" aria-hidden="true"></i>
+            <%= link_to track, method: :delete, remote: true do %>
+              <i class="fa fa-trash" aria-hidden="true"></i>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

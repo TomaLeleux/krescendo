@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_05_141849) do
+ActiveRecord::Schema.define(version: 2018_06_07_095038) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,12 +24,10 @@ ActiveRecord::Schema.define(version: 2018_06_05_141849) do
   end
 
   create_table "playlists", force: :cascade do |t|
-    t.string "artist_name"
-    t.string "album_name"
-    t.string "track_name"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
     t.index ["user_id"], name: "index_playlists_on_user_id"
   end
 
@@ -39,6 +37,16 @@ ActiveRecord::Schema.define(version: 2018_06_05_141849) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_searches_on_user_id"
+  end
+
+  create_table "tracks", force: :cascade do |t|
+    t.string "artist_name"
+    t.string "album_name"
+    t.string "track_name"
+    t.bigint "playlist_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["playlist_id"], name: "index_tracks_on_playlist_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -65,4 +73,5 @@ ActiveRecord::Schema.define(version: 2018_06_05_141849) do
   add_foreign_key "historics", "users"
   add_foreign_key "playlists", "users"
   add_foreign_key "searches", "users"
+  add_foreign_key "tracks", "playlists"
 end
