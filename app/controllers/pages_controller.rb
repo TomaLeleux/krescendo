@@ -5,5 +5,7 @@ class PagesController < ApplicationController
   end
 
   def show
+    # @videos = YoutubeSearch.search('nirvana')
+    # p @videos
   end
 end

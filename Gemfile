@@ -23,6 +23,9 @@ gem 'cloudinary'
 gem 'carrierwave', '~> 1.2'
 gem 'pg_search'
 gem 'lyricfy'
+# gem 'google-api-client'
+# gem 'trollop'
+# gem 'youtube_search'
 
 group :development do
   gem 'web-console', '>= 3.3.0'
