@@ -9,28 +9,18 @@
     <p>rating</p>
   </div>
   <div class="album-carroussel">
-    Ceci est un caroussel d'album
+    <%= render 'shared/album_carroussel' %>
   </div>
 </div>
 <div class="details-body">
   <div class="left-side">
     <h3>Tracks</h3>
     <ul>
-      <li>Smell like teen spirits</li>
-      <li>Smell like teen spirits</li>
-      <li>Smell like teen spirits</li>
-      <li>Smell like teen spirits</li>
-      <li>Smell like teen spirits</li>
-      <li>Smell like teen spirits</li>
-      <li>Smell like teen spirits</li>
-      <li>Smell like teen spirits</li>
-      <li>Smell like teen spirits</li>
-      <li>Smell like teen spirits</li>
-      <li>Smell like teen spirits</li>
-      <li>Smell like teen spirits</li>
-      <li>Smell like teen spirits</li>
-      <li>Smell like teen spirits</li>
-      <li>Smell like teen spirits</li>
+      <% tracks = DeezerApiService.tracks(57124442) %>
+      <% tracks["data"].each do |track| %>
+        <li><%= "#{track['track_position']}. #{track['title']}" %></li>
+        <%= audio_tag track['preview'], :type => "audio/mp3", :controls => true %>
+      <% end %>
     </ul>
   </div>
   <div class="right-side">
