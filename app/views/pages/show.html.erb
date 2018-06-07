@@ -47,7 +47,13 @@
         <div class="col-xs-6 space-padding">
           <div class="card-show">
             Lyrics
-            <div class="lyrics">
+            <span id="menu-lyrics">
+              <i class="fa fa-play-circle" id="scroll" aria-hidden="true"></i>
+              <i class="fa fa-pause-circle" aria-hidden="true" id="pause"></i>
+              <i class="fa fa-stop-circle" aria-hidden="true" id="stop"></i>
+            <span>
+            <span id="intervalID" hidden></span>
+            <div id="lyrics">
             <% fetcher = Lyricfy::Fetcher.new %>
             <% song = fetcher.search 'Nirvana', 'Smells like teen spirit' %>
             <p><%= song.body('<br>').html_safe %></p>
