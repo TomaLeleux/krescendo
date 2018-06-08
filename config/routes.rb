@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   end
   get '/search', to: 'pages#index', as: 'search'
   get '/details/:id', to: 'pages#show', as: 'details'
+
+  get '/albumtracks/:id', to: 'pages#tracks_by_album'
 end
