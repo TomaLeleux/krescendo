@@ -5,8 +5,10 @@ Rails.application.routes.draw do
     resources :playlists, only: [:index, :create, :update, :destroy]
   end
 
-  get '/search', to: 'pages#index', as: 'search'
+  delete '/tracks/:id', to: 'tracks#destroy', as: 'track'
+  get '/search', to: 'pages#search', as: 'search'
   get '/details/:id', to: 'pages#show', as: 'details'
+  get '/albumtracks/:id', to: 'pages#tracks_by_album'
 
   post '/tracks/:id', to: 'tracks#create', as: 'tracks'
   delete '/tracks/:id', to: 'tracks#destroy', as: 'track'

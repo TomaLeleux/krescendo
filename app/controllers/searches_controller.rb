@@ -1,14 +1,14 @@
 class SearchesController < ApplicationController
-  before_action :set_search, only: [:show]
+  before_action :set_search, only: [:index]
   skip_before_action :authenticate_user!, only: [:index, :show]
 
 
   def index
-    @searches = policy_scope(Search).order(created_at: :desc)
+    # @searches = policy_scope(Search).order(created_at: :desc)
   end
 
   def show
-    @search = policy_scope(Search).find(params[:id])
+    # @search = policy_scope(Search).find(params[:id])
   end
 
   def new
@@ -25,6 +25,14 @@ class SearchesController < ApplicationController
     else
       render :new
     end
+  end
+
+  def search
+    authorize Search.new
+    @keyword = params[:keyword]
+    @artists = DeezerApiService.search_artists(params[:keyword])
+    @albums = DeezerApiService.search_albums(params[:keyword])
+    @tracks = DeezerApiService.search_tracks(params[:keyword])
   end
 
   private
