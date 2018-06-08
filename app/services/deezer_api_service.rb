@@ -14,7 +14,13 @@ class DeezerApiService
 
   def self.tracks(album_id)
     response = RestClient.get "https://api.deezer.com/album/#{album_id}/tracks"
-    return JSON.parse(response)
+    # p "There is FIRST in #{album_id}"
+     return JSON.parse(response)
+    # if result["next"]
+    #    "There is next in #{album_id}"
+    #   response = RestClient.get result["next"]
+    #    result.merge!(JSON.parse(response))
+    # end
   end
 
   def self.search_artists(keyword)
