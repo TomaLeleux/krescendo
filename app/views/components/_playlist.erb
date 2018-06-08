@@ -13,9 +13,9 @@
       </tr>
       <% playlist.tracks.each do |track| %>
         <tr data-track-id='<%= track.id %>'>
-          <td><%= track.track_name %></td>
-          <td><%= track.album_name %></td>
-          <td><%= track.artist_name %></td>
+          <td><%= DeezerApiService.track(track.track_id)['title'] %></td>
+          <td><%= track.album_id.nil? ? 'No album' : DeezerApiService.album(track.album_id)['title'] %></td>
+          <td><%= track.artist_id.nil? ? 'No artist' : DeezerApiService.artist(track.artist_id)['name'] %></td>
           <td><i class="fa fa-eye" aria-hidden="true"></i> <i class="fa fa-play" aria-hidden="true"></i>
             <%= link_to track, method: :delete, remote: true do %>
               <i class="fa fa-trash" aria-hidden="true"></i>

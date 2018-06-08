@@ -6,6 +6,7 @@ class PlaylistsController < ApplicationController
   end
 
   def create
+    @playlists = policy_scope(Playlist).order(created_at: :desc)
     @playlist = Playlist.new(playlist_params)
     authorize @playlist
     @playlist.user = current_user
@@ -17,6 +18,7 @@ class PlaylistsController < ApplicationController
   end
 
   def update
+    @playlist = Playlist.find(param[:id])
     authorize @playlist
     @playlist.update(playlist_params)
     redirect_to playlists_path

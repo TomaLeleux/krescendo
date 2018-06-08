@@ -17,6 +17,21 @@ class DeezerApiService
     return JSON.parse(response)
   end
 
+  def self.artist(artist_id)
+    response = RestClient.get "https://api.deezer.com/artist/#{artist_id}"
+    return JSON.parse(response)
+  end
+
+  def self.album(album_id)
+    response = RestClient.get "https://api.deezer.com/album/#{album_id}"
+    return JSON.parse(response)
+  end
+
+  def self.track(track_id)
+    response = RestClient.get "https://api.deezer.com/track/#{track_id}"
+    return JSON.parse(response)
+  end
+
   def self.valid_artist
     bad_url = "//250x250-000000-80-0-0.jpg"
     bad_url2 = "https://cdns-images.dzcdn.net/images/artist//250x250-000000-80-0-0.jpg"

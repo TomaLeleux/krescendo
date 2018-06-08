@@ -1,5 +1,7 @@
 import "bootstrap";
-import './lyrcisscroll.js'
 import { listenToPlaylist } from './playlist';
+import './lyrcisscroll.js'
 
-listenToPlaylist();
+if (document.querySelectorAll('.playlist .flex-container')) {
+  listenToPlaylist();
+}
