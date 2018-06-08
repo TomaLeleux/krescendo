@@ -1,27 +1,35 @@
 <div class="container-home-artist">
 
   <div class="tab-content">
-    <div id="popular" class="tab-pane fade in active">
-      <div id = 'popular-content'>
-        <%= render 'shared/search_artist_carroussel' %>
+    <% if @artists["data"].empty? %>
+      <h2 class="text-center">No artists found</h2>
+    <% else %>
+      <div id="popular" class="tab-pane fade in active">
+        <div id = 'popular-content'>
+          <%= render 'shared/search_artist_carroussel' %>
+        </div>
       </div>
-    </div>
-    <div id = "new" class="tab-pane fade">
-      <div id = "new-content">
-        <%= render 'shared/search_artist_carroussel' %>
+      <div id = "new" class="tab-pane fade">
+        <div id = "new-content">
+          <%= render 'shared/search_artist_carroussel' %>
+        </div>
       </div>
-    </div>
-    <div id="recommended" class="tab-pane fade">
-      <div id = 'recommended-content'>
-        <%= render 'shared/search_artist_carroussel' %>
+      <div id="recommended" class="tab-pane fade">
+        <div id = 'recommended-content'>
+          <%= render 'shared/search_artist_carroussel' %>
+        </div>
       </div>
-    </div>
+    <% end %>
   </div>
 </div>
 
-<div class="container-home-news">
+<div class="container-search-albums">
   <div class="tab-content">
-    <%= render 'shared/album_carroussel' %>
+    <% if @albums["data"].empty? %>
+      <h2 class="text-center">No albums found</h2>
+    <% else %>
+      <%= render 'shared/album_carroussel' %>
+    <% end %>
   </div>
 </div>
 
