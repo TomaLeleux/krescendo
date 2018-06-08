@@ -8,8 +8,12 @@ class PagesController < ApplicationController
   def show
     @artist = DeezerApiService.call(params[:id])
     @albums = DeezerApiService.albums(params[:id])
-    # @albums = DeezerApiService.albums(id)
-    # @videos = YoutubeSearch.search('nirvana')
-    # p @videos
+    @search = Search.new
+  end
+
+  def search
+    @artists = DeezerApiService.search_artists(params[:keyword])
+    @albums = DeezerApiService.search_albums(params[:keyword])
+    @tracks = DeezerApiService.search_tracks(params[:keyword])
   end
 end

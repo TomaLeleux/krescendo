@@ -18,8 +18,9 @@
     <ul>
       <% tracks = DeezerApiService.tracks(57124442) %>
       <% tracks["data"].each do |track| %>
-        <li><%= "#{track['track_position']}. #{track['title']}" %></li>
-        <%= audio_tag track['preview'], :type => "audio/mp3", :controls => true %>
+        <li><%= "#{track['track_position']}. #{track['title']}" %>
+          <%= audio_tag track['preview'], :type => "audio/mp3", :controls => true %>
+        </li>
       <% end %>
     </ul>
   </div>
@@ -30,7 +31,7 @@
           <div class="card-show">
             Video
             <iframe id="player" type="text/html" width="640" height="360"
-            src="http://www.youtube.com/embed?listType=search&list=nirvana"
+            src="https://www.youtube.com/embed?listType=search&list=<%=@artist['name'] %>}"
             frameborder="0"></iframe>
           </div>
         </div>
@@ -44,9 +45,8 @@
             <span>
             <span id="intervalID" hidden></span>
             <div id="lyrics">
-            <% fetcher = Lyricfy::Fetcher.new %>
-            <% song = fetcher.search 'Nirvana', 'Smells like teen spirit' %>
-            <p><%= song.body('<br>').html_safe %></p>
+              <% lyric = LyricsFetchService.call(@artist['name'], 'Smell like teen spirit') %>
+              <p><%= lyric.html_safe %></p>
             </div>
           </div>
         </div>

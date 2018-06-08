@@ -1,0 +1,4 @@
+<%= simple_form_for @search do |f| %>
+  <%= f.input :keyword, as: :text, class: "search-input", placeholder: "Artist, Song, Album"  %>
+  <%= f.button :submit %>
+<% end %>

@@ -1,0 +1,27 @@
+<div class="container-home-artist">
+
+  <div class="tab-content">
+    <div id="popular" class="tab-pane fade in active">
+      <div id = 'popular-content'>
+        <%= render 'shared/search_artist_carroussel' %>
+      </div>
+    </div>
+    <div id = "new" class="tab-pane fade">
+      <div id = "new-content">
+        <%= render 'shared/search_artist_carroussel' %>
+      </div>
+    </div>
+    <div id="recommended" class="tab-pane fade">
+      <div id = 'recommended-content'>
+        <%= render 'shared/search_artist_carroussel' %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container-home-news">
+  <div class="tab-content">
+    <%= render 'shared/album_carroussel' %>
+  </div>
+</div>
+
