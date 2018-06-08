@@ -8,5 +8,6 @@ Rails.application.routes.draw do
   get '/search', to: 'pages#index', as: 'search'
   get '/details/:id', to: 'pages#show', as: 'details'
 
+  post '/tracks/:id', to: 'tracks#create', as: 'tracks'
   delete '/tracks/:id', to: 'tracks#destroy', as: 'track'
 end

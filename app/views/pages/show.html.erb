@@ -18,7 +18,12 @@
     <ul>
       <% tracks = DeezerApiService.tracks(57124442) %>
       <% tracks["data"].each do |track| %>
-        <li><%= "#{track['track_position']}. #{track['title']}" %></li>
+        <li><%= "#{track['track_position']}. #{track['title']}" %>
+          <% if current_user %>
+            <%= link_to tracks_path(track['id']), method: :post, remote: true do %>
+              <i class="fa fa-plus" aria-hidden="true"></i></li>
+            <% end %>
+          <% end %>
         <%= audio_tag track['preview'], :type => "audio/mp3", :controls => true %>
       <% end %>
     </ul>
