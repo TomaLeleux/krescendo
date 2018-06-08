@@ -48,18 +48,8 @@
             <span>
             <span id="intervalID" hidden></span>
             <div id="lyrics">
-            <% fetcher = Lyricfy::Fetcher.new %>
-            <% begin %>
-            <% song = fetcher.search @artist["name"], tracks["data"][0]['title']%>
-            <% rescue %>
-            <p>Sorry no lyrics available for this song</p>
-            <% else %>
-              <% if !song.nil? %>
-              <p><%= song.body('<br>').html_safe %></p>
-              <% else %>
-              <p>Sorry no lyrics available for this song</p>
-              <% end %>
-            <% end %>
+              <% lyric = LyricsFetchService.call(@artist['name'], 'Smell like teen spirit') %>
+              <p><%= lyric.html_safe %></p>
             </div>
           </div>
         </div>

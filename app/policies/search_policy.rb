@@ -12,4 +12,12 @@ class SearchPolicy < ApplicationPolicy
   def new?
     create?
   end
+
+  def show?
+    true
+  end
+
+  def search?
+    true
+  end
 end

@@ -23,10 +23,20 @@ class DeezerApiService
     # end
   end
 
-  # def self.tracks_next(url)
-  #   response = RestClient.get url
-  #   return JSON.parse(response)
-  # end
+  def self.search_artists(keyword)
+    response = RestClient.get "https://api.deezer.com/search/artist?q=#{keyword}"
+    return JSON.parse(response)
+  end
+
+  def self.search_albums(keyword)
+    response = RestClient.get "https://api.deezer.com/search/album?q=#{keyword}"
+    return JSON.parse(response)
+  end
+
+  def self.search_tracks(keyword)
+    response = RestClient.get "https://api.deezer.com/search/album?q=#{keyword}"
+    return JSON.parse(response)
+  end
 
   def self.valid_artist
     bad_url = "//250x250-000000-80-0-0.jpg"
