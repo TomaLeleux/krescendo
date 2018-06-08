@@ -57,7 +57,7 @@
             <span>
             <span id="intervalID" hidden></span>
             <div id="lyrics">
-              <% lyric = LyricsFetchService.call(@artist['name'], 'Smell like teen spirit') %>
+              <% lyric = LyricsFetchService.call('Led zeppelin', 'Kashmir') %>
               <p><%= lyric.html_safe %></p>
             </div>
           </div>
