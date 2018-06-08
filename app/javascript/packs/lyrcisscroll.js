@@ -28,4 +28,5 @@ if (document.getElementById("lyrics")) {
     const intervalID = Number(document.getElementById('intervalID').innerText)
     objDiv.scrollTop = 0;
   });
+
 }
