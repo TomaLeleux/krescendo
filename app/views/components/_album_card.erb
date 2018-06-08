@@ -1,0 +1,9 @@
+<%= link_to "#", class: 'clickable-card' do %>
+  <div class="card">
+    <div class="album text-center">
+      <%= image_tag album["cover_medium"], alt: 'Album photo', class: 'album-photo' %>
+      <h3 class="album-name"><%= album["title"] %></h3>
+      <p class="album-style"></p>
+    </div>
+  </div>
+<% end %>
