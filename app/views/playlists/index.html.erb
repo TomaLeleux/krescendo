@@ -1,0 +1,11 @@
+<% @playlists.each do |playlist| %>
+  <%= render 'components/playlist', playlist: playlist %>
+<% end %>
+<div class="container-common text-center">
+  <div class="container">
+    <%= simple_form_for @playlist do |f| %>
+      <%= f.input :name %>
+      <%= f.submit class: 'btn btn-primary'%>
+    <% end %>
+  </div>
+</div>
