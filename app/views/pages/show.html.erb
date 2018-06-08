@@ -17,14 +17,7 @@
     <h3>Tracks</h3>
     <ul>
 
-<!--       <% # tracks = DeezerApiService.tracks(57124442) %>
-      <% # tracks["data"].each do |track| %>
-        <li><%= # "#{track['track_position']}. #{track['title']}" %>
-          <% # if current_user %>
-            <%= # link_to tracks_path(track['id']), method: :post, remote: true do %>
-              <i class="fa fa-plus" aria-hidden="true"></i></li>
-            <% # end %>
-          <% # end %> -->
+
 
       <!-- <span id= "cach-tracks" hidden> -->
        <% #@tracks[41838521].each do |track| %>
@@ -32,7 +25,13 @@
        <span id= "cach-tracks" hidden>
         <% @tracks.first[1].each do |track| %>
       </span>
-        <li><%= "#{track['track_position']}. #{track['title']}" %></li>
+        <li><%= "#{track['track_position']}. #{track['title']}" %>
+          <% if current_user %>
+            <%= link_to tracks_path(track['id']), method: :post, remote: true do %>
+              <i class="fa fa-plus" aria-hidden="true"></i></li>
+            <% end %>
+          <% end %>
+        </li>
         <%= audio_tag track['preview'], :type => "audio/mp3", :controls => true %>
       <% end %>
     </ul>
