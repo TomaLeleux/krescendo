@@ -1,0 +1,16 @@
+.album {
+  .album-photo {
+    width: 150px;
+    height: 150px;
+  }
+  .album-name {
+    margin-bottom: 0;
+    margin-top: 15px;
+    font-size: 20px;
+    color: $color4;
+  }
+  .album-style {
+    opacity: .5;
+    font-size: 16px;
+  }
+}
