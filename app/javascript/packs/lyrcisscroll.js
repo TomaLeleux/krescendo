@@ -1,4 +1,6 @@
 
+
+if (document.getElementById("lyrics")) {
 var objDiv = document.getElementById("lyrics");
 console.log(objDiv.scrollTop)
 // objDiv.scrollTop = objDiv.scrollHeight;
@@ -28,3 +30,4 @@ document.getElementById('stop').addEventListener('click',(event) => {
   const intervalID = Number(document.getElementById('intervalID').innerText)
   objDiv.scrollTop = 0;
 });
+}

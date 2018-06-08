@@ -14,8 +14,19 @@ class DeezerApiService
 
   def self.tracks(album_id)
     response = RestClient.get "https://api.deezer.com/album/#{album_id}/tracks"
-    return JSON.parse(response)
+    # p "There is FIRST in #{album_id}"
+     return JSON.parse(response)
+    # if result["next"]
+    #    "There is next in #{album_id}"
+    #   response = RestClient.get result["next"]
+    #    result.merge!(JSON.parse(response))
+    # end
   end
+
+  # def self.tracks_next(url)
+  #   response = RestClient.get url
+  #   return JSON.parse(response)
+  # end
 
   def self.valid_artist
     bad_url = "//250x250-000000-80-0-0.jpg"
