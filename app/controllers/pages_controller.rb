@@ -9,6 +9,11 @@ class PagesController < ApplicationController
     @artist = DeezerApiService.call(params[:id])
     @artist_split = @artist['name'].downcase.split
     @albums = DeezerApiService.albums(params[:id])
+
+    @tracks = {}
+    @albums["data"].each do |album|
+          @tracks[album['id']] = (DeezerApiService.tracks(album['id']))["data"]
+    end
   end
 
   def search
