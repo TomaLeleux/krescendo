@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+if (document.getElementById('album-id')){
 const idAlbum =  document.getElementById('album-id').innerText
 let i = 'first'
 console.log(idAlbum)
@@ -28,6 +28,7 @@ console.log(idAlbum)
   .catch(function (error) {
     console.log(error);
   });
+}
 //element structure :
 // disk_number:2
 // duration:229
