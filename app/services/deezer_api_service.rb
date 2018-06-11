@@ -52,6 +52,11 @@ class DeezerApiService
     return JSON.parse(response)
   end
 
+  def self.related_artists(artist_id)
+    response = RestClient.get "https://api.deezer.com/artist/#{artist_id}/related"
+    return JSON.parse(response)
+  end
+
   def self.valid_artist
     bad_url = "//250x250-000000-80-0-0.jpg"
     bad_url2 = "https://cdns-images.dzcdn.net/images/artist//250x250-000000-80-0-0.jpg"

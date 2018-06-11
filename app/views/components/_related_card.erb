@@ -1,0 +1,9 @@
+<%= content_tag :div, :class=>"card" do %>
+  <%= link_to details_path(artist["id"]), class: 'clickable-card' do %>
+    <div class="artist text-center">
+      <%= image_tag artist["picture_medium"], alt: 'Artist photo', class: 'artist-photo' %>
+      <h3 class="artist-name"><%= artist["name"] %></h3>
+      <p class="artist-style"></p>
+    </div>
+  <% end %>
+<% end %>
