@@ -1,22 +1,22 @@
 <div id="albums-carousel" class="carousel slide" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#albums-carousel" data-slide-to="0" class="active"></li>
-    <% counter = (@albums["data"].size / 2) %>
+    <% counter = (@albums["data"].size / 3) %>
     <% counter.times do |i| %>
-      <li data-target="#artists-carousel" data-slide-to='<%= "#{i + 1}" %>' class></li>
+      <li data-target="#albums-carousel" data-slide-to='<%= "#{i + 1}" %>' class></li>
     <% end %>
   </ol>
   <div class="carousel-inner" role="listbox">
     <div class="item active">
       <div class="row">
-        <% @albums["data"].first(2).each do |album| %>
+        <% @albums["data"].first(3).each do |album| %>
           <div class="col-xs-2 col-xs-offset-2">
             <%= render 'components/album_card', album: album %>
           </div>
         <% end %>
       </div>
     </div>
-    <% @albums["data"].drop(2).each_slice(2) do |three_album| %>
+    <% @albums["data"].drop(3).each_slice(3) do |three_album| %>
       <div class="item">
         <div class="row">
           <% three_album.each do |album| %>

@@ -6,10 +6,40 @@
     <h3 id="artist-name"><%= @artist["name"] %></h3>
     <%= link_to "see wiki", @artist["link"], target: "_blank", id: "wiki-link" %>
     <%= link_to "add to playlist", ""  %>
-    <p>rating</p>
+    <p>
+      <% rating = (0..5).to_a.sample %>
+      <% if rating > 0  %>
+        <% diff = 5 - rating %>
+        <% rating.times do |x| %>
+          <i class="fa fa-star rating text-center"></i>
+        <% end %>
+        <% diff.times do |y| %>
+          <i class="fa fa-star-o rating text-center"></i>
+        <% end %>
+      <% else %>
+        <% 5.times do |x| %>
+          <i class="fa fa-star-o rating text-center"></i>
+        <% end %>
+      <% end %>
+    </p>
   </div>
-  <div class="album-carroussel">
-    <%= render 'shared/album_carroussel' %>
+  <div class="container">
+    <ul class="nav nav-tabs">
+      <li class="active tab-self"><a data-toggle="tab" href="#albums">Albums</a></li>
+      <li class="tab-self"><a data-toggle="tab" href="#related">Artists related</a></li>
+    </ul>
+    <div class="tab-content">
+      <div id="albums" class="tab-pane fade in active">
+        <div class="album-carroussel">
+          <%= render 'shared/album_carroussel' %>
+        </div>
+      </div>
+      <div id="related" class="tab-pane fade">
+        <div class="artist-carroussel">
+          <%= render 'shared/related_carroussel' %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 <div class="details-body">
