@@ -15,16 +15,13 @@
 <div class="details-body">
   <div class="left-side">
     <h3>Tracks</h3>
-    <ul>
-      <!-- <span id= "cach-tracks" hidden> -->
-       <% #@tracks[41838521].each do |track| %>
-      <!-- </span> -->
+    <ul id="tracklist">
        <span id= "cach-tracks" hidden>
-        <% @tracks.first[1].each do |track| %>
+        <% # @tracks.first[1].each do |track| %>
       </span>
-        <li><%= "#{track['track_position']}. #{track['title']}" %></li>
-        <%= audio_tag track['preview'], :type => "audio/mp3", :controls => true %>
-      <% end %>
+      <% #{}"#{track['track_position']}. #{track['title']}" %>
+        <% # audio_tag track['preview'], :type => "audio/mp3", :controls => true %>
+      <% # end %>
     </ul>
   </div>
   <div class="right-side">
@@ -34,7 +31,7 @@
           <div class="card-show">
             Video
             <iframe id="player" type="text/html" width="640" height="360"
-            src=<%="https://www.youtube.com/embed?listType=search&list="+@artist_split.join('+')%>
+            src=""
             frameborder="0"></iframe>
           </div>
         </div>
