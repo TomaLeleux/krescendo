@@ -1,10 +1,10 @@
-<%= link_to "#", target: "_blank", class: 'clickable-card' do %>
+
   <div class="card">
     <div class="album text-center">
-      <span id="album-id" hidden> <%= album["id"]%> </span>
-      <%= image_tag album["cover_medium"], alt: 'Album photo', class: 'album-photo' %>
+      <span class="album-id" data-album=<%= album["id"]%> hidden></span>
+      <%= image_tag album["cover_medium"], alt: 'Album photo', class: 'album-photo', 'data-album': album["id"] %>
       <h3 class="album-name"><%= album["title"] %></h3>
       <p class="album-style"></p>
     </div>
   </div>
-<% end %>
+

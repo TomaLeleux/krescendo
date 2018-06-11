@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-if (document.getElementById('album-id')){
-  const idAlbum =  document.getElementById('album-id').innerText
+if (document.querySelector('.album-id')){
+  const idAlbum =  document.querySelector('.album-id').dataset.album
   let i = 'first'
-  const targetTrack = document.querySelector(".active-track")
+  const targetTrack = document.querySelector(".first-track")
   console.log(idAlbum)
     // axios.get(`/albumtracks/${parseInt(idAlbum)}`  ,{responseType:'json'})
     axios({
