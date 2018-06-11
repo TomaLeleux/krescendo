@@ -5,7 +5,12 @@ class TrackPolicy < ApplicationPolicy
     end
 
   end
+
   def destroy?
+    record.playlist.user == user
+  end
+
+  def create?
     record.playlist.user == user
   end
 end
