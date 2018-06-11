@@ -18,16 +18,16 @@ class PlaylistsController < ApplicationController
   end
 
   def update
-    @playlist = Playlist.find(param[:id])
+    @playlist = Playlist.find(params[:id])
     authorize @playlist
     @playlist.update(playlist_params)
     redirect_to playlists_path
   end
 
   def destroy
+    @playlist = Playlist.find(params[:id])
     authorize @playlist
     @playlist.destroy
-    redirect_to playlists_path
   end
 
   private
