@@ -26,6 +26,7 @@ if (document.getElementById("lyrics")) {
 
   document.getElementById('stop').addEventListener('click',(event) => {
     const intervalID = Number(document.getElementById('intervalID').innerText)
+    clearInterval(intervalID);
     objDiv.scrollTop = 0;
   });
 

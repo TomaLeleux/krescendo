@@ -1,6 +1,5 @@
 /* The Modal (background) */
 .modal {
-    display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
     z-index: 1; /* Sit on top */
     padding-top: 100px; /* Location of the box */
@@ -25,7 +24,10 @@
     -webkit-animation-name: animatetop;
     -webkit-animation-duration: 0.4s;
     animation-name: animatetop;
-    animation-duration: 0.4s
+    animation-duration: 0.4s;
+    .modal-body {
+      color: black;
+    }
 }
 
 /* Add Animation */

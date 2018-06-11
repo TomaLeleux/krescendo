@@ -8,21 +8,43 @@ const addButtonToPlaylist = () => {
   }
 };
 
-const choosePlaylist = (event) => {
-  // Get the modal
-  const modal = document.getElementById('playlist-modal');
-
-  // Get the button that opens the modal
-  const btn = event.target;
-
-  // Get the <span> element that closes the modal
-  const span = document.getElementsByClassName("close")[0];
-
-  // When the user clicks the button, open the modal
-  btn.onclick = function() {
-    modal.style.display = "block";
+const buildHref = (href, id) => {
+  let count = 0;
+  let newHref = '';
+  for (let i = 0; i < href.length && count !== 3; i++) {
+    if (href[i] === '/') {
+      count++;
+    }
+    newHref += href[i];
   }
+  if (count === 3) {
+    newHref += id;
+  } else {
+    newHref += '/' + id;
+  }
+  console.log(href);
+  console.log(id);
+  console.log(count);
+  console.log(newHref);
+  return (newHref);
+};
 
+const addListenersForPlaylist = () => {
+  const buttons = document.querySelectorAll('.fa-plus');
+  const modal = document.getElementById('playlist-modal');
+  const span = document.getElementsByClassName("close")[0];
+  const body = modal.querySelector('.modal-body').children;
+
+  buttons.forEach((button) => {
+    const id = button.parentElement.parentElement.firstChild.id;
+    button.onclick = function() {
+      for (let i = 0; i < body.length; i++) {
+        const newLink = buildHref(body[i].getAttribute('href'), id);
+        body[i].setAttribute('href', newLink);
+      };
+      modal.style.display = "block";
+    }
+  });
   // When the user clicks on <span> (x), close the modal
   span.onclick = function() {
     modal.style.display = "none";
@@ -34,53 +56,63 @@ const choosePlaylist = (event) => {
       modal.style.display = "none";
     }
   }
-}
-
-const addListenerToPlaylistButton = () => {
-  const buttons = document.querySelectorAll('.fa-plus');
-  buttons.forEach((button) => {
-    button.parentElement.addEventListener('click', choosePlaylist);
-  });
 };
 
 if (document.getElementById('album-id')){
-
-
   const idAlbum =  document.getElementById('album-id').innerText
   let i = 'first'
+  const targetTrack = document.querySelector(".active-track")
   console.log(idAlbum)
-  // axios.get(`/albumtracks/${parseInt(idAlbum)}`  ,{responseType:'json'})
-  axios({
-    method:'get',
-    url:`/albumtracks/${parseInt(idAlbum)}`
-  })
-  .then(function (response) {
-    response.data[parseInt(idAlbum)].forEach(function(element) {
-      if (i == 'first'){
-        const searchPlayer = element['artist']['name'].toLowerCase().split(' ').join('+')+'+'+element['title_short'].toLowerCase().split(' ').join('+');
-      //add in video the first track
-      document.getElementById('player').setAttribute('src',"https://www.youtube.com/embed?listType=search&list="+searchPlayer)
-      //add in player the first track
+    // axios.get(`/albumtracks/${parseInt(idAlbum)}`  ,{responseType:'json'})
+    axios({
+      method:'get',
+      url:`/albumtracks/${parseInt(idAlbum)}`
+    })
+    .then(function (response) {
+      response.data[parseInt(idAlbum)].forEach(function(element) {
+        if (i == 'first'){
+          const searchPlayer = element['artist']['name'].toLowerCase().split(' ').join('+')+'+'+element['title_short'].toLowerCase().split(' ').join('+');
+          //add in video the first track
+          document.getElementById('player').setAttribute('src',"https://www.youtube.com/embed?listType=search&list="+searchPlayer)
+          //add in player the first track
+          // traductions : Scrapping ? https://paroles2chansons.lemonde.fr/paroles-the-beatles/paroles-sgt-pepper-s-lonely-hearts-club-band.html
+          //add in track list the first track with class on-air
+          //document.getElementById('tracklist').insertAdjacentHTML('beforeend',`<li><span class="active-track" id="${element['id']}"></span><i class="fa fa-play-circle on-air" aria-hidden="true"></i>  ${element['title_short']}</li>`)
+
+          targetTrack.setAttribute('id',`${element['id']}`);
+          targetTrack.setAttribute('data-artist',`${element['artist']['name']}`)
+          targetTrack.setAttribute('data-song',`${element['title_short']}`)
+          document.querySelector('.track-name').innerText = `${element['title_short']}` ;
+          i = '';
+        }else{
+          //add in track list the other tracks with class active
+          document.getElementById('tracklist').insertAdjacentHTML('beforeend',`<li><span class="other-track" id="${element['id']}" data-artist="${element['artist']['name']}" data-song="${element['title_short']}"></span><i class="fa fa-play-circle" aria-hidden="true"></i><span class="track-name">${element['title_short']}</span></li>`)
+        }
+      });
       //add in lyrics the first track
-      //add in track list the first track with class on-air
-      document.getElementById('tracklist').insertAdjacentHTML('beforeend',`<li><i class="fa fa-play-circle on-air" aria-hidden="true"></i><span id="${element['id']}"></span>  ${element['title_short']}</li>`)
-      i = '';
-    }else{
-      //add in track list the other tracks with class active
-      document.getElementById('tracklist').insertAdjacentHTML('beforeend',`<li><i class="fa fa-play-circle" aria-hidden="true"></i><span id="${element['id']}"></span>  ${element['title_short']}</li>`)
-    }
-  });
-  })
-  .catch(function (error) {
-    console.log(error);
-  })
-  .then(function () {
-    addButtonToPlaylist();
-  })
-  .then(function() {
-    addListenerToPlaylistButton();
-  });
-}
+      let idTrack = parseInt(targetTrack.getAttribute("id"));
+      axios({
+        method:'get',
+        url:`/tracksLyrics/${idTrack}`
+      })
+      .then(function (response) {
+       document.getElementById('lyrics').innerHTML = `${response['data']}`
+     })
+      .catch(function (error) {
+        console.log(error);
+      });
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
+    .then(function () {
+      addButtonToPlaylist();
+    })
+    .then(function () {
+      addListenersForPlaylist();
+    });
+  }
+
 //element structure :
 // disk_number:2
 // duration:229

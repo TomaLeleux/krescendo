@@ -35,18 +35,14 @@
 
   <div class="tab-content">
     <div id="news" class="tab-pane fade in active">
-      <%= render 'components/news_card' %>
-      <%= render 'components/news_card' %>
-      <%= render 'components/news_card' %>
-      <%= render 'components/news_card' %>
-      <%= render 'components/news_card' %>
+      <% @news["articles"].first(20).each do |article| %>
+        <%= render 'shared/news', article: article %>
+      <% end %>
     </div>
     <div id="ynews" class="tab-pane fade">
-      <%= render 'components/news_card' %>
-      <%= render 'components/news_card' %>
-      <%= render 'components/news_card' %>
-      <%= render 'components/news_card' %>
-      <%= render 'components/news_card' %>
+      <% @ynews["articles"].each do |article| %>
+        <%= render 'shared/news', article: article %>
+      <% end %>
     </div>
   </div>
 </div>
