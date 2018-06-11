@@ -1,7 +1,5 @@
 import axios from 'axios';
 
-setTimeout(load,1000);
-setTimeout(loadAlbum,1000);
 
 function trackRefresh() {
   const trackOnAir = this.parentNode.firstElementChild
@@ -46,13 +44,15 @@ function albumrefresh(){
           targetTrack.setAttribute('id',`${element['id']}`);
           targetTrack.setAttribute('data-artist',`${element['artist']['name']}`)
           targetTrack.setAttribute('data-song',`${element['title_short']}`)
-          document.querySelector('.track-name').innerText = `${element['title_short']}` ;
+          document.querySelector('.track-name').innerText = `${element['title_short']}`;
+          document.getElementById(`${element['id']}`).parentNode.querySelector('.fa').addEventListener('click', trackRefresh, false);
           i = '';
         }else{
           //add in track list the other tracks with class active
           document.getElementById('tracklist').insertAdjacentHTML('beforeend',`<li><span class="other-track" id="${element['id']}" data-artist="${element['artist']['name']}" data-song="${element['title_short']}"></span><i class="fa fa-play-circle" aria-hidden="true"></i><span class="track-name">${element['title_short']}</span></li>`)
+          document.getElementById(`${element['id']}`).parentNode.querySelector('.fa').addEventListener('click', trackRefresh, false);
         }
-        setTimeout(load,1000);
+        // setTimeout(load,1000);
       });
       //add in lyrics the first track
       let idTrack = parseInt(targetTrack.getAttribute("id"));
@@ -72,15 +72,6 @@ function albumrefresh(){
     });
 }
 
-function load(){
-  if (document.querySelector('.album-id')){
-    const classname = document.querySelectorAll(".fa-play-circle");
-    for (var i = 0; i < classname.length; i++) {
-      classname[i].addEventListener('click', trackRefresh, false);
-    }
-  }
-}
-
 function loadAlbum(){
   if (document.querySelector('.album-id')){
     const classalbum = document.querySelectorAll('.album-photo');
@@ -91,4 +82,8 @@ function loadAlbum(){
 }
 // });
 
+setTimeout(loadAlbum,100);
+export {loadAlbum}
+export {albumrefresh}
+export {trackRefresh}
 
