@@ -2,7 +2,8 @@ class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: :home
 
   def home
-    # @musics = DeezerApiService.call
+    @ynews = MTVNewsApiService.call("top")
+    @news = MTVNewsApiService.call("all")
   end
 
   def show
@@ -33,7 +34,7 @@ class PagesController < ApplicationController
 
   def tracks_by_album
     @tracks = {}
-      @tracks[params[:id]] = (DeezerApiService.tracks(params[:id]))["data"]
+    @tracks[params[:id]] = (DeezerApiService.tracks(params[:id]))["data"]
     render json: @tracks
   end
 
