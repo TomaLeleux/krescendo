@@ -1,34 +1,54 @@
 import axios from 'axios';
+
 if (document.getElementById('album-id')){
-const idAlbum =  document.getElementById('album-id').innerText
-let i = 'first'
-console.log(idAlbum)
-// axios.get(`/albumtracks/${parseInt(idAlbum)}`  ,{responseType:'json'})
-  axios({
-  method:'get',
-  url:`/albumtracks/${parseInt(idAlbum)}`
-})
-  .then(function (response) {
-    response.data[parseInt(idAlbum)].forEach(function(element) {
-      if (i == 'first'){
-        const searchPlayer = element['artist']['name'].toLowerCase().split(' ').join('+')+'+'+element['title_short'].toLowerCase().split(' ').join('+');
-      //add in video the first track
-        document.getElementById('player').setAttribute('src',"https://www.youtube.com/embed?listType=search&list="+searchPlayer)
-      //add in player the first track
+  const idAlbum =  document.getElementById('album-id').innerText
+  let i = 'first'
+  const targetTrack = document.querySelector(".active-track")
+  console.log(idAlbum)
+    // axios.get(`/albumtracks/${parseInt(idAlbum)}`  ,{responseType:'json'})
+    axios({
+      method:'get',
+      url:`/albumtracks/${parseInt(idAlbum)}`
+    })
+    .then(function (response) {
+      response.data[parseInt(idAlbum)].forEach(function(element) {
+        if (i == 'first'){
+          const searchPlayer = element['artist']['name'].toLowerCase().split(' ').join('+')+'+'+element['title_short'].toLowerCase().split(' ').join('+');
+          //add in video the first track
+          document.getElementById('player').setAttribute('src',"https://www.youtube.com/embed?listType=search&list="+searchPlayer)
+          //add in player the first track
+          // traductions : Scrapping ? https://paroles2chansons.lemonde.fr/paroles-the-beatles/paroles-sgt-pepper-s-lonely-hearts-club-band.html
+          //add in track list the first track with class on-air
+          //document.getElementById('tracklist').insertAdjacentHTML('beforeend',`<li><span class="active-track" id="${element['id']}"></span><i class="fa fa-play-circle on-air" aria-hidden="true"></i>  ${element['title_short']}</li>`)
+
+          targetTrack.setAttribute('id',`${element['id']}`);
+          targetTrack.setAttribute('data-artist',`${element['artist']['name']}`)
+          targetTrack.setAttribute('data-song',`${element['title_short']}`)
+          document.querySelector('.track-name').innerText = `${element['title_short']}` ;
+          i = '';
+        }else{
+          //add in track list the other tracks with class active
+          document.getElementById('tracklist').insertAdjacentHTML('beforeend',`<li><span class="other-track" id="${element['id']}" data-artist="${element['artist']['name']}" data-song="${element['title_short']}"></span><i class="fa fa-play-circle" aria-hidden="true"></i><span class="track-name">${element['title_short']}</span></li>`)
+        }
+      });
       //add in lyrics the first track
-      //add in track list the first track with class on-air
-        document.getElementById('tracklist').insertAdjacentHTML('beforeend',`<li><i class="fa fa-play-circle on-air" aria-hidden="true"></i><span id="${element['id']}"></span>  ${element['title_short']}</li>`)
-        i = '';
-      }else{
-      //add in track list the other tracks with class active
-      document.getElementById('tracklist').insertAdjacentHTML('beforeend',`<li><i class="fa fa-play-circle" aria-hidden="true"></i><span id="${element['id']}"></span>  ${element['title_short']}</li>`)
-      }
+      let idTrack = parseInt(targetTrack.getAttribute("id"));
+      axios({
+        method:'get',
+        url:`/tracksLyrics/${idTrack}`
+      })
+        .then(function (response) {
+         document.getElementById('lyrics').innerHTML = `${response['data']}`
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+      })
+    .catch(function (error) {
+      console.log(error);
     });
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
-}
+  }
+
 //element structure :
 // disk_number:2
 // duration:229

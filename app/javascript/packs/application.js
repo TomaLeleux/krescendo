@@ -5,5 +5,6 @@ import './lyrcisscroll.js';
 if (document.querySelectorAll('.playlist .flex-container')) {
   listenToPlaylist();
 }
+import './loadtracksinshow.js'
+import './reloadshow.js'
 
-import './loadtracksinshow.js';
