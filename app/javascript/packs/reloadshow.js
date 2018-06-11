@@ -1,29 +1,61 @@
 import axios from 'axios';
 
 
-// document.addEventListener("DOMContentLoaded", () => {
-// console.log("DOM fully loaded and parsed");
-setTimeout(load,1000);
+function trackRefresh() {
+  const trackOnAir = this.parentNode.firstElementChild
+  document.querySelector(".on-air").classList.remove("on-air")
+  this.parentNode.classList.add("on-air")
+  const trackId = trackOnAir.getAttribute("id");
+  const singer = trackOnAir.dataset.artist
+  const song = trackOnAir.dataset.song
+  const searchPlayer = singer.toLowerCase().split(' ').join('+')+'+'+song.toLowerCase().split(' ').join('+');
+  document.getElementById('player').setAttribute('src',"https://www.youtube.com/embed?listType=search&list="+searchPlayer)
+  let idTrack = parseInt(trackId);
+  axios({
+    method:'get',
+    url:`/tracksLyrics/${idTrack}`
+  })
+    .then(function (response) {
+     document.getElementById('lyrics').innerHTML = `${response['data']}`
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};
 
-function myFunction() {
-      const trackOnAir = this.parentNode.firstElementChild
-      document.querySelector(".active-track").classList.remove("active-track")
-      document.querySelector(".on-air").classList.remove("on-air")
-      this.parentNode.classList.add("on-air")
-      trackOnAir.classList.add("active-track")
-
-      const trackId = trackOnAir.getAttribute("id");
-      const singer = trackOnAir.dataset.artist
-      const song = trackOnAir.dataset.song
-
-      // console.log(trackId);
-      // console.log(singer);
-      // console.log(song);
-      const searchPlayer = singer.toLowerCase().split(' ').join('+')+'+'+song.toLowerCase().split(' ').join('+');
-      //add in video the first track
-      document.getElementById('player').setAttribute('src',"https://www.youtube.com/embed?listType=search&list="+searchPlayer)
-      const targetTrack = document.querySelector(".active-track")
-      let idTrack = parseInt(trackId);
+function albumrefresh(){
+  let listAlbum = document.getElementById('tracklist');
+  listAlbum.children[0].classList.add('on-air');
+  while (listAlbum.children.length > 1) {
+  listAlbum.removeChild(listAlbum.lastChild);
+  }
+  const albumId = parseInt(this.dataset.album);
+  const targetTrack = document.querySelector(".first-track")
+  let i = 'first'
+  axios({
+      method:'get',
+      url:`/albumtracks/${albumId}`
+    })
+    .then(function (response) {
+      response.data[albumId].forEach(function(element) {
+        if (i == 'first'){
+          const searchPlayer = element['artist']['name'].toLowerCase().split(' ').join('+')+'+'+element['title_short'].toLowerCase().split(' ').join('+');
+          document.getElementById('player').setAttribute('src',"https://www.youtube.com/embed?listType=search&list="+searchPlayer)
+          targetTrack.setAttribute('id',`${element['id']}`);
+          targetTrack.setAttribute('data-artist',`${element['artist']['name']}`)
+          targetTrack.setAttribute('data-song',`${element['title_short']}`)
+          document.querySelector('.track-name').innerText = `${element['title_short']}`;
+          document.getElementById(`${element['id']}`).parentNode.querySelector('.fa').addEventListener('click', trackRefresh, false);
+          i = '';
+        }else{
+          //add in track list the other tracks with class active
+          document.getElementById('tracklist').insertAdjacentHTML('beforeend',`<li><span class="other-track" id="${element['id']}" data-artist="${element['artist']['name']}" data-song="${element['title_short']}"></span><i class="fa fa-play-circle" aria-hidden="true"></i><span class="track-name">${element['title_short']}</span></li>`)
+          document.getElementById(`${element['id']}`).parentNode.querySelector('.fa').addEventListener('click', trackRefresh, false);
+        }
+        // setTimeout(load,1000);
+      });
+      //add in lyrics the first track
+      let idTrack = parseInt(targetTrack.getAttribute("id"));
       axios({
         method:'get',
         url:`/tracksLyrics/${idTrack}`
@@ -34,17 +66,24 @@ function myFunction() {
         .catch(function (error) {
           console.log(error);
         });
-      };
+      })
+    .catch(function (error) {
+      console.log(error);
+    });
+}
 
-function load(){
-  if (document.getElementById('album-id')){
-    const classname = document.querySelectorAll(".fa-play-circle");
-    console.log(classname.length);
-    for (var i = 0; i < classname.length; i++) {
-      classname[i].addEventListener('click', myFunction, false);
+function loadAlbum(){
+  if (document.querySelector('.album-id')){
+    const classalbum = document.querySelectorAll('.album-photo');
+    for (var y = 0; y < classalbum.length; y++) {
+      classalbum[y].addEventListener('click', albumrefresh, false);
     }
   }
 }
 // });
 
+setTimeout(loadAlbum,100);
+export {loadAlbum}
+export {albumrefresh}
+export {trackRefresh}
 
