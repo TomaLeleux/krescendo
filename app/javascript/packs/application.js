@@ -7,3 +7,7 @@ if (document.querySelectorAll('.playlist .flex-container')) {
 }
 
 import './loadtracksinshow.js'
+
+// if (document.getElementById('tracklist')) {
+//   addButtonToPlaylist();
+// }

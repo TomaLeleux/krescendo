@@ -1,22 +1,41 @@
-const collapsePlaylist = (event) => {
-  if (event.target.tagName === 'DIV') {
-    const caret = event.target.firstElementChild;
-    const tableDiv = event.target.nextElementSibling;
-    if (caret.classList.contains('fa-caret-right')) {
-      caret.classList.remove('fa-caret-right');
-      caret.classList.add('fa-caret-down');
-      tableDiv.classList.toggle('playlist-desc-displayed');
-    } else {
-      caret.classList.remove('fa-caret-down');
-      caret.classList.add('fa-caret-right');
-      tableDiv.classList.toggle('playlist-desc-displayed');
-    }
-  } else if (event.target.tagName === 'H3') {
-
+const togglePlaylist = (caret, tableDiv) => {
+  if (caret.classList.contains('fa-caret-right')) {
+    caret.classList.remove('fa-caret-right');
+    caret.classList.add('fa-caret-down');
+    tableDiv.classList.toggle('playlist-desc-displayed');
   } else {
-
+    caret.classList.remove('fa-caret-down');
+    caret.classList.add('fa-caret-right');
+    tableDiv.classList.toggle('playlist-desc-displayed');
   }
 };
+
+const collapsePlaylist = (event) => {
+  let caret = null;
+  let tableDiv = null;
+  if (event.target.tagName === 'DIV') {
+    caret = event.target.firstElementChild;
+    tableDiv = event.target.nextElementSibling;
+  } else if (event.target.tagName === 'H3') {
+    caret = event.target.previousElementSibling;
+    tableDiv = event.target.parentElement.nextElementSibling;
+  } else {
+    caret = event.target
+    tableDiv = event.target.parentElement.nextElementSibling;
+  }
+  togglePlaylist(caret, tableDiv);
+};
+
+// const addButtonToPlaylist = () => {
+//   const tracklist = document.getElementById('tracklist')
+//   tracklist.children.forEach((child) => {
+//     if (child.tagName === 'LI') {
+//       const id = child.id;
+//       child.innerHTML += '<i class="fa fa-plus" aria-hidden="true"></i>'
+//       console.log(child.children);
+//     }
+//   });
+// };
 
 const listenToPlaylist = () => {
   const playlists = document.querySelectorAll('.playlist .flex-container');
@@ -25,4 +44,4 @@ const listenToPlaylist = () => {
   });
 };
 
-export { listenToPlaylist };
+export { listenToPlaylist/*,  addButtonToPlaylist */ };
