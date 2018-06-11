@@ -7,10 +7,40 @@
     <h3 id="artist-name"><%= @artist["name"] %></h3>
     <%= link_to "see wiki", @artist["link"], target: "_blank", id: "wiki-link" %>
     <%= link_to "add to playlist", ""  %>
-    <p>rating</p>
+    <p>
+      <% rating = (0..5).to_a.sample %>
+      <% if rating > 0  %>
+        <% diff = 5 - rating %>
+        <% rating.times do |x| %>
+          <i class="fa fa-star rating text-center"></i>
+        <% end %>
+        <% diff.times do |y| %>
+          <i class="fa fa-star-o rating text-center"></i>
+        <% end %>
+      <% else %>
+        <% 5.times do |x| %>
+          <i class="fa fa-star-o rating text-center"></i>
+        <% end %>
+      <% end %>
+    </p>
   </div>
-  <div class="album-carroussel">
-    <%= render 'shared/album_carroussel' %>
+  <div class="container">
+    <ul class="nav nav-tabs">
+      <li class="active tab-self"><a data-toggle="tab" href="#albums">Albums</a></li>
+      <li class="tab-self"><a data-toggle="tab" href="#related">Artists related</a></li>
+    </ul>
+    <div class="tab-content">
+      <div id="albums" class="tab-pane fade in active">
+        <div class="album-carroussel">
+          <%= render 'shared/album_carroussel' %>
+        </div>
+      </div>
+      <div id="related" class="tab-pane fade">
+        <div class="artist-carroussel">
+          <%= render 'shared/related_carroussel' %>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
 <div class="details-body">
@@ -18,15 +48,10 @@
     <h3>Tracks</h3>
 
     <ul id="tracklist">
-       <span id= "cach-tracks" hidden>
-        <% # @tracks.first[1].each do |track| %>
-      </span>
 
-      <% #{}"#{track['track_position']}. #{track['title']}" %>
-        <% # audio_tag track['preview'], :type => "audio/mp3", :controls => true %>
-      <% # end %>
-      <li class="on-air"><span class="active-track" id="" data-artist="" data-song=""></span><i class="fa fa-play-circle" aria-hidden="true"></i><span class="track-name"></span></li>
+      <li class="on-air first-track"><span class="active-track" id="" data-artist="" data-song=""></span><i class="fa fa-play-circle" aria-hidden="true"></i><span class="track-name"></span></li>
     </ul>
+        <% # audio_tag track['preview'], :type => "audio/mp3", :controls => true %>
   </div>
   <div class="right-side">
     <div class="container-show">
@@ -55,7 +80,7 @@
         </div>
         <div class="col-xs-6 space-padding">
           <div class="card-show">
-            Traductions
+            Translation
           </div>
         </div>
         <div class="col-xs-6 space-padding">

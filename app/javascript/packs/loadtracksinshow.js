@@ -1,9 +1,12 @@
 import axios from 'axios';
+import {loadAlbum} from './reloadshow'
+import {albumrefresh} from './reloadshow'
+import {trackRefresh} from './reloadshow'
 
 const addButtonToPlaylist = () => {
   const tracklist = document.getElementById('tracklist').children;
   const length = tracklist.length;
-  for (let i = 1; i < length; i++) {
+  for (let i = 0; i < length; i++) {
     tracklist[i].innerHTML += '  <a style="cursor: pointer;"><i class="fa fa-plus" aria-hidden="true"></i></a>'
   }
 };
@@ -22,10 +25,6 @@ const buildHref = (href, id) => {
   } else {
     newHref += '/' + id;
   }
-  console.log(href);
-  console.log(id);
-  console.log(count);
-  console.log(newHref);
   return (newHref);
 };
 
@@ -36,7 +35,7 @@ const addListenersForPlaylist = () => {
   const body = modal.querySelector('.modal-body').children;
 
   buttons.forEach((button) => {
-    const id = button.parentElement.parentElement.firstChild.id;
+    const id = button.parentElement.parentElement.id;
     button.onclick = function() {
       for (let i = 0; i < body.length; i++) {
         const newLink = buildHref(body[i].getAttribute('href'), id);
@@ -58,10 +57,10 @@ const addListenersForPlaylist = () => {
   }
 };
 
-if (document.getElementById('album-id')){
-  const idAlbum =  document.getElementById('album-id').innerText
+if (document.querySelector('.album-id')){
+  const idAlbum =  document.querySelector('.album-id').dataset.album
   let i = 'first'
-  const targetTrack = document.querySelector(".active-track")
+  const targetTrack = document.querySelector(".first-track")
   console.log(idAlbum)
     // axios.get(`/albumtracks/${parseInt(idAlbum)}`  ,{responseType:'json'})
     axios({
@@ -82,11 +81,13 @@ if (document.getElementById('album-id')){
           targetTrack.setAttribute('id',`${element['id']}`);
           targetTrack.setAttribute('data-artist',`${element['artist']['name']}`)
           targetTrack.setAttribute('data-song',`${element['title_short']}`)
-          document.querySelector('.track-name').innerText = `${element['title_short']}` ;
+          document.querySelector('.track-name').innerText = `${element['title_short']}`;
+          document.getElementById(`${element['id']}`).parentNode.querySelector('.fa').addEventListener('click', trackRefresh, false);
           i = '';
         }else{
           //add in track list the other tracks with class active
           document.getElementById('tracklist').insertAdjacentHTML('beforeend',`<li><span class="other-track" id="${element['id']}" data-artist="${element['artist']['name']}" data-song="${element['title_short']}"></span><i class="fa fa-play-circle" aria-hidden="true"></i><span class="track-name">${element['title_short']}</span></li>`)
+          document.getElementById(`${element['id']}`).parentNode.querySelector('.fa').addEventListener('click', trackRefresh, false);
         }
       });
       //add in lyrics the first track
