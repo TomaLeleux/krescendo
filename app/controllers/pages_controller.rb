@@ -43,4 +43,10 @@ class PagesController < ApplicationController
     @lyrics = LyricsFetchService.call(@track['contributors'][0]['name'],@track['title_short'])
     render json: @lyrics
   end
+
+  def translation_for_tracks
+    @track = (DeezerApiService.track(params[:id]))
+    @translation = TranslationService.call(@track['contributors'][0]['name'],@track['title_short'])
+  end
+
 end

@@ -17,13 +17,7 @@ if (document.querySelector('.album-id')){
       response.data[parseInt(idAlbum)].forEach(function(element) {
         if (i == 'first'){
           const searchPlayer = element['artist']['name'].toLowerCase().split(' ').join('+')+'+'+element['title_short'].toLowerCase().split(' ').join('+');
-          //add in video the first track
           document.getElementById('player').setAttribute('src',"https://www.youtube.com/embed?listType=search&list="+searchPlayer)
-          //add in player the first track
-          // traductions : Scrapping ? https://paroles2chansons.lemonde.fr/paroles-the-beatles/paroles-sgt-pepper-s-lonely-hearts-club-band.html
-          //add in track list the first track with class on-air
-          //document.getElementById('tracklist').insertAdjacentHTML('beforeend',`<li><span class="active-track" id="${element['id']}"></span><i class="fa fa-play-circle on-air" aria-hidden="true"></i>  ${element['title_short']}</li>`)
-
           targetTrack.setAttribute('id',`${element['id']}`);
           targetTrack.setAttribute('data-artist',`${element['artist']['name']}`)
           targetTrack.setAttribute('data-song',`${element['title_short']}`)
@@ -48,6 +42,7 @@ if (document.querySelector('.album-id')){
         .catch(function (error) {
           console.log(error);
         });
+      //add translation
       })
     .catch(function (error) {
       console.log(error);
