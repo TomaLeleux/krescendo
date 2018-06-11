@@ -22,6 +22,7 @@
       <% #{}"#{track['track_position']}. #{track['title']}" %>
         <% # audio_tag track['preview'], :type => "audio/mp3", :controls => true %>
       <% # end %>
+      <li><span class="active-track" id=""></span><i class="fa fa-play-circle on-air" aria-hidden="true"></i><span class="track-name"></span></li>
     </ul>
   </div>
   <div class="right-side">
@@ -45,8 +46,7 @@
             <span>
             <span id="intervalID" hidden></span>
             <div id="lyrics">
-              <% lyric = LyricsFetchService.call('Led zeppelin', 'Kashmir') %>
-              <p><%= lyric.html_safe %></p>
+              <!-- controller Show lyric_by_track -->
             </div>
           </div>
         </div>

@@ -33,11 +33,13 @@ class PagesController < ApplicationController
 
   def tracks_by_album
     @tracks = {}
-          @tracks[params[:id]] = (DeezerApiService.tracks(params[:id]))["data"]
-      p @tracks.to_json
-    # respond_to do |format|
-      render json: @tracks
-    # end
+      @tracks[params[:id]] = (DeezerApiService.tracks(params[:id]))["data"]
+    render json: @tracks
+  end
 
+  def lyric_by_track
+    @track = (DeezerApiService.track(params[:id]))
+    @lyrics = LyricsFetchService.call(@track['contributors'][0]['name'],@track['title_short'])
+    render json: @lyrics
   end
 end
