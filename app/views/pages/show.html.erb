@@ -6,7 +6,22 @@
     <h3 id="artist-name"><%= @artist["name"] %></h3>
     <%= link_to "see wiki", @artist["link"], target: "_blank", id: "wiki-link" %>
     <%= link_to "add to playlist", ""  %>
-    <p>rating</p>
+    <p>
+      <% rating = (0..5).to_a.sample %>
+      <% if rating > 0  %>
+        <% diff = 5 - rating %>
+        <% rating.times do |x| %>
+          <i class="fa fa-star rating text-center"></i>
+        <% end %>
+        <% diff.times do |y| %>
+          <i class="fa fa-star-o rating text-center"></i>
+        <% end %>
+      <% else %>
+        <% 5.times do |x| %>
+          <i class="fa fa-star-o rating text-center"></i>
+        <% end %>
+      <% end %>
+    </p>
   </div>
   <div class="album-carroussel">
     <%= render 'shared/album_carroussel' %>
