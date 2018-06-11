@@ -1,0 +1,21 @@
+<div id="playlist-modal" class="modal" style="display: none;">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>Choose which playlist you want to add your song to</h2>
+    </div>
+    <div class="modal-body">
+      <% current_user.playlists.each do |playlist| %>
+        <%= link_to track_to_playlist_path(playlist, ''), method: :post, remote: true do %>
+          <p><%= playlist.name %></p>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="modal-footer">
+      <h3>Modal Footer</h3>
+    </div>
+  </div>
+
+</div>
