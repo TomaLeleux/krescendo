@@ -7,7 +7,7 @@ if (document.getElementById("lyrics")) {
   document.getElementById('scroll').addEventListener('click',(event) => {
     let start = 0;
     const end = objDiv.scrollHeight;
-    const scroll = setInterval(scrolling, 200);
+    const scroll = setInterval(scrolling, 100);
     document.getElementById('intervalID').innerText = scroll;
     console.log(scroll)
   });
