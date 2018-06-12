@@ -73,16 +73,19 @@ function albumrefresh(){
 }
 
 function loadAlbum(){
+  console.log('1')
   if (document.querySelector('.album-id')){
-    const classalbum = document.querySelectorAll('.album-photo');
+    const classalbum = document.querySelectorAll('.target-album-image');
     for (var y = 0; y < classalbum.length; y++) {
+      console.log('done')
       classalbum[y].addEventListener('click', albumrefresh, false);
     }
   }
 }
 // });
-
-setTimeout(loadAlbum,100);
+document.addEventListener( 'DOMContentLoaded', (e) =>{
+  loadAlbum();
+});
 export {loadAlbum}
 export {albumrefresh}
 export {trackRefresh}

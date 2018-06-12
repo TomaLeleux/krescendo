@@ -43,4 +43,5 @@ class PagesController < ApplicationController
     @lyrics = LyricsFetchService.call(@track['contributors'][0]['name'],@track['title_short'])
     render json: @lyrics
   end
+
 end

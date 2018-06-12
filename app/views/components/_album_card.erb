@@ -1,7 +1,9 @@
 <div class="card">
   <div class="album text-center">
     <span class="album-id" data-album=<%= album["id"]%> hidden></span>
-    <%= image_tag album["cover_medium"].nil? ? "" : album["cover_medium"], alt: 'Album photo', class: 'album-photo', 'data-album': album["id"] %>
+    <div class = "target-album-image" data-album=<%= album["id"]%>>
+    <%= image_tag album["cover_medium"], alt: 'Album photo', class: 'album-photo', 'data-album': album["id"] %>
+    </div>
     <% rating = (0..5).to_a.sample %>
     <% if rating > 0  %>
       <% diff = 5 - rating %>
@@ -16,7 +18,7 @@
         <i class="fa fa-star-o rating text-center"></i>
       <% end %>
     <% end %>
-    <h3 class="album-name"><%= album["title"] %></h3>
-    <p class="album-style"></p>
-  </div>
+  <h3 class="album-name"><%= album["title"] %></h3>
+  <p class="album-style"></p>
+</div>
 </div>
