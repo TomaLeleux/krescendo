@@ -48,7 +48,6 @@ const addListenersForPlaylist = () => {
 if (document.querySelector('.album-id')){
   const idAlbum =  document.querySelector('.album-id').dataset.album
   let i = 'first'
-  const targetTrack = document.querySelector(".first-track")
   console.log(idAlbum);
   addListenersForPlaylist();
     // axios.get(`/albumtracks/${parseInt(idAlbum)}`  ,{responseType:'json'})
@@ -80,6 +79,7 @@ if (document.querySelector('.album-id')){
         }
       });
       //add in lyrics the first track
+      const targetTrack = document.querySelector(".first-track")
       let idTrack = parseInt(targetTrack.getAttribute("id"));
       axios({
         method:'get',
