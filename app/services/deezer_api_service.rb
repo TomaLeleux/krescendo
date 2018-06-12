@@ -59,6 +59,7 @@ class DeezerApiService
   end
 
   def self.valid_artist
+    Ohm.redis = Redic.new(ENV['REDIS_URL'])
     bad_url = "//250x250-000000-80-0-0.jpg"
     id = rand(1...4000)
     music = Ohm.redis.call "GET", id
