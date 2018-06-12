@@ -3,6 +3,60 @@ import {loadAlbum} from './reloadshow'
 import {albumrefresh} from './reloadshow'
 import {trackRefresh} from './reloadshow'
 
+const addButtonToPlaylist = () => {
+  const tracklist = document.getElementById('tracklist').children;
+  const length = tracklist.length;
+  for (let i = 0; i < length; i++) {
+    tracklist[i].innerHTML += '  <a style="cursor: pointer;"><i class="fa fa-plus" aria-hidden="true"></i></a>'
+  }
+};
+
+const buildHref = (href, id) => {
+  let count = 0;
+  let newHref = '';
+  for (let i = 0; i < href.length && count !== 3; i++) {
+    if (href[i] === '/') {
+      count++;
+    }
+    newHref += href[i];
+  }
+  if (count === 3) {
+    newHref += id;
+  } else {
+    newHref += '/' + id;
+  }
+  return (newHref);
+};
+
+const addListenersForPlaylist = () => {
+  const buttons = document.querySelectorAll('.fa-plus');
+  const modal = document.getElementById('playlist-modal');
+  const span = document.getElementsByClassName("close")[0];
+  const body = modal.querySelector('.modal-body').children;
+
+  buttons.forEach((button) => {
+    const id = button.parentElement.parentElement.id;
+    button.onclick = function() {
+      for (let i = 0; i < body.length; i++) {
+        const newLink = buildHref(body[i].getAttribute('href'), id);
+        body[i].setAttribute('href', newLink);
+      };
+      modal.style.display = "block";
+    }
+  });
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+};
+
 if (document.querySelector('.album-id')){
   const idAlbum =  document.querySelector('.album-id').dataset.album
   let i = 'first'
@@ -36,16 +90,21 @@ if (document.querySelector('.album-id')){
         method:'get',
         url:`/tracksLyrics/${idTrack}`
       })
-        .then(function (response) {
-         document.getElementById('lyrics').innerHTML = `${response['data']}`
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-      //add translation
-      })
+      .then(function (response) {
+       document.getElementById('lyrics').innerHTML = `${response['data']}`
+     })
+      .catch(function (error) {
+        console.log(error);
+      });
+    })
     .catch(function (error) {
       console.log(error);
+    })
+    .then(function () {
+      addButtonToPlaylist();
+    })
+    .then(function () {
+      addListenersForPlaylist();
     });
   }
 

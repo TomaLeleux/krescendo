@@ -1,27 +1,24 @@
-
-  <div class="card">
-    <div class="album text-center">
-      <span class="album-id" data-album=<%= album["id"]%> hidden></span>
-      <div class = "target-album-image" data-album=<%= album["id"]%>>
-      <%= image_tag album["cover_medium"], alt: 'Album photo', class: 'album-photo', 'data-album': album["id"] %>
-      </div>
-      <% rating = (0..5).to_a.sample %>
-      <% if rating > 0  %>
-        <% diff = 5 - rating %>
-        <% rating.times do |x| %>
-          <i class="fa fa-star rating text-center"></i>
-        <% end %>
-        <% diff.times do |y| %>
-          <i class="fa fa-star-o rating text-center"></i>
-        <% end %>
-      <% else %>
-        <% 5.times do |x| %>
-          <i class="fa fa-star-o rating text-center"></i>
-        <% end %>
-      <% end %>
-      <h3 class="album-name"><%= album["title"] %></h3>
-      <p class="album-style"></p>
+<div class="card">
+  <div class="album text-center">
+    <span class="album-id" data-album=<%= album["id"]%> hidden></span>
+    <div class = "target-album-image" data-album=<%= album["id"]%>>
+    <%= image_tag album["cover_medium"], alt: 'Album photo', class: 'album-photo', 'data-album': album["id"] %>
     </div>
-  </div>
-
-
+    <% rating = (0..5).to_a.sample %>
+    <% if rating > 0  %>
+      <% diff = 5 - rating %>
+      <% rating.times do |x| %>
+        <i class="fa fa-star rating text-center"></i>
+      <% end %>
+      <% diff.times do |y| %>
+        <i class="fa fa-star-o rating text-center"></i>
+      <% end %>
+    <% else %>
+      <% 5.times do |x| %>
+        <i class="fa fa-star-o rating text-center"></i>
+      <% end %>
+    <% end %>
+  <h3 class="album-name"><%= album["title"] %></h3>
+  <p class="album-style"></p>
+</div>
+</div>
