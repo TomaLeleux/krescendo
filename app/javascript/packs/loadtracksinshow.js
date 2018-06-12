@@ -3,16 +3,16 @@ import {loadAlbum} from './reloadshow'
 import {albumrefresh} from './reloadshow'
 import {trackRefresh} from './reloadshow'
 
-const buildHref = (href, id) => {
+const addTrackToHref = (href, id) => {
   let count = 0;
   let newHref = '';
-  for (let i = 0; i < href.length && count !== 3; i++) {
+  for (let i = 0; i < href.length && count !== 2; i++) {
     if (href[i] === '/') {
       count++;
     }
     newHref += href[i];
   }
-  if (count === 3) {
+  if (count === 2) {
     newHref += id;
   } else {
     newHref += '/' + id;
@@ -20,23 +20,60 @@ const buildHref = (href, id) => {
   return (newHref);
 };
 
-const addListenerToButton = (id, body, modal) => {
-  for (let i = 0; i < body.length; i++) {
-    const newLink = buildHref(body[i].getAttribute('href'), id);
-    body[i].setAttribute('href', newLink);
-  };
+const addListenerToButton = (id) => {
+  const modal = document.getElementById('playlist-modal');
+  const button = document.querySelector('.modal-footer').firstElementChild;
+  const newLink = addTrackToHref(button.getAttribute('href'), id);
+
+  button.setAttribute('href', newLink);
+  button.classList.add('disabled');
   modal.style.display = "block";
 };
 
+const addListenerToPlaylistButton = (button) => {
+  const buttonSend = document.querySelector('.modal-footer').firstElementChild;
+  const selected = document.querySelector('.selected');
+
+  if (selected) {
+    selected.classList.remove('selected');
+  }
+  button.classList.add('selected');
+  buttonSend.setAttribute('href', buttonSend.getAttribute('href') + '/' + button.getAttribute('id'));
+  buttonSend.classList.remove('disabled');
+};
+
+// this function adds listener for the modal
 const addListenersForPlaylist = () => {
   const modal = document.getElementById('playlist-modal');
   const span = document.getElementsByClassName("close")[0];
+  const button = document.querySelector('.modal-footer').firstElementChild;
+  const playlistsButtons = document.querySelector('.modal-body').children;
 
   // When the user clicks on <span> (x), close the modal
   span.onclick = function() {
     modal.style.display = "none";
   }
 
+  for (let i = 0; i < playlistsButtons.length; i++) {
+    if (playlistsButtons[i].getAttribute('id') !== 'new' && playlistsButtons[i].tagName !== 'DIV') {
+      playlistsButtons[i].onclick = function() {
+        addListenerToPlaylistButton(playlistsButtons[i]);
+      };
+    } else if (playlistsButtons[i].tagName !== 'DIV') {
+      playlistsButtons[i].onclick = function() {
+        const selected = document.querySelector('.selected');
+
+        if (selected) {
+          selected.classList.remove('selected');
+        }
+        playlistsButtons[i].classList.add('selected');
+      };
+    }
+  };
+
+  button.onclick = function() {
+    modal.style.display = "none";
+  }
   // When the user clicks anywhere outside of the modal, close it
   window.onclick = function(event) {
     if (event.target == modal) {
@@ -57,14 +94,12 @@ if (document.querySelector('.album-id')){
     })
     .then(function (response) {
       response.data[parseInt(idAlbum)].forEach(function(element) {
-        const modal = document.getElementById('playlist-modal');
-        const body = modal.querySelector('.modal-body').children;
         if (i == 'first'){
           const searchPlayer = element['artist']['name'].toLowerCase().split(' ').join('+')+'+'+element['title_short'].toLowerCase().split(' ').join('+');
           document.getElementById('player').setAttribute('src',"https://www.youtube.com/embed?listType=search&list="+searchPlayer)
           document.getElementById('tracklist').insertAdjacentHTML('beforeend',`<li class="on-air"><span class="first-track" id="${element['id']}" data-artist="${element['artist']['name']}" data-song="${element['title_short']}"></span><i class="fa fa-play-circle" aria-hidden="true"></i><span class="track-name">${element['title_short']}</span>  <a style="cursor: pointer;"><i class="fa fa-plus" aria-hidden="true"></i></a></li>`)
           document.getElementById(`${element['id']}`).parentNode.lastChild.onclick = function () {
-            addListenerToButton(element['id'], body, modal);
+            addListenerToButton(element['id']);
           };
           document.querySelector('.track-name').innerText = `${element['title_short']}`;
           document.getElementById(`${element['id']}`).parentNode.querySelector('.fa').addEventListener('click', trackRefresh, false);
@@ -74,7 +109,7 @@ if (document.querySelector('.album-id')){
           document.getElementById('tracklist').insertAdjacentHTML('beforeend',`<li><span class="other-track" id="${element['id']}" data-artist="${element['artist']['name']}" data-song="${element['title_short']}"></span><i class="fa fa-play-circle" aria-hidden="true"></i><span class="track-name">${element['title_short']}</span>  <a style="cursor: pointer;"><i class="fa fa-plus" aria-hidden="true"></i></a></li>`)
           document.getElementById(`${element['id']}`).parentNode.querySelector('.fa').addEventListener('click', trackRefresh, false);
           document.getElementById(`${element['id']}`).parentNode.lastChild.onclick = function () {
-            addListenerToButton(element['id'], body, modal);
+            addListenerToButton(element['id']);
           };
         }
       });
@@ -97,7 +132,7 @@ if (document.querySelector('.album-id')){
     });
   }
 
-export { addListenerToButton };
+  export { addListenerToButton };
 
 //element structure :
 // disk_number:2

@@ -10,6 +10,6 @@ Rails.application.routes.draw do
   get '/albumtracks/:id', to: 'pages#tracks_by_album'
   get '/tracksLyrics/:id', to: 'pages#lyric_by_track'
 
-  post '/tracks(/:playlist_id)(/:track_id)', to: 'tracks#create', as: 'track_to_playlist'
+  post '/tracks(/:track_id)(/:playlist_id)', to: 'tracks#create', as: 'track_to_playlist'
   delete '/tracks/:id', to: 'tracks#destroy', as: 'track'
 end
