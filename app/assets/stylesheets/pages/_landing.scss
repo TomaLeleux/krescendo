@@ -6,7 +6,7 @@
   background-size: cover !important;
   display: flex;
   align-items: center;
-  background-image: linear-gradient(-225deg, rgba(13,18,25,0.2) 0%, rgba(13,18,25,0.3) 50%), url('landing.jpg')
+  background-image: linear-gradient(-225deg, rgba(13,18,25,0.2) 0%, rgba(13,18,25,0.3) 50%), asset-url('landing.jpg')
 }
 .landing-content{
   margin-left: 5%;
