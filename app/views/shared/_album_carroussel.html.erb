@@ -8,19 +8,27 @@
   </ol>
   <div class="carousel-inner" role="listbox">
     <div class="item active">
-      <div class="row">
+      <div class="row hidden-xs hidden-sm">
         <% @albums["data"].first(2).each do |album| %>
-          <div class="col-xs-2 col-xs-offset-2">
+          <div class="col-xs-6 col-md-4 col-md-offset-1">
+            <%= render 'components/album_card', album: album %>
+          </div>
+        <% end %>
+      </div>
+      <div class="row hidden-md hidden-lg">
+        <% @albums["data"].first(2).each do |album| %>
+          <div class="col-xs-6 col-md-4 col-md-offset-1">
             <%= render 'components/album_card', album: album %>
           </div>
         <% end %>
       </div>
     </div>
+
     <% @albums["data"].drop(2).each_slice(2) do |three_album| %>
       <div class="item">
         <div class="row">
           <% three_album.each do |album| %>
-            <div class="col-xs-2 col-xs-offset-2">
+            <div class="col-xs-6 col-md-4 col-md-offset-2">
               <%= render 'components/album_card', album: album %>
             </div>
           <% end %>

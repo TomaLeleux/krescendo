@@ -8,6 +8,9 @@
     fit-auto: cover;
   }
 }
+.artist-data-mobile{
+  display: flex;
+}
 .info-artist {
   width: 20%;
 }
@@ -52,3 +55,22 @@ ul {
 .on-air .fa{
   color: $color3;
 }
+
+@media (max-width: 800px) {
+
+  .left-side{
+    padding: 10px 4px 0px 4px;
+  }
+  .right-side{
+    width: 100%;
+  }
+  .info-artist{
+    width: 50%;
+    text-align: center;
+  }
+  .photo-artist {
+    width: 44vw;
+    height: 44vw;
+    padding: 10px;
+  }
+ }
