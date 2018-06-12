@@ -40,17 +40,17 @@ class DeezerApiService
   end
 
   def self.search_artists(keyword)
-    response = RestClient.get "https://api.deezer.com/search/artist?q=#{keyword}"
+    response = RestClient.get "https://api.deezer.com/search/artist?q=#{I18n.transliterate(keyword)}"
     return JSON.parse(response)
   end
 
   def self.search_albums(keyword)
-    response = RestClient.get "https://api.deezer.com/search/album?q=#{keyword}"
+    response = RestClient.get "https://api.deezer.com/search/album?q=#{I18n.transliterate(keyword)}"
     return JSON.parse(response)
   end
 
   def self.search_tracks(keyword)
-    response = RestClient.get "https://api.deezer.com/search/album?q=#{keyword}"
+    response = RestClient.get "https://api.deezer.com/search/album?q=#{I18n.transliterate(keyword)}"
     return JSON.parse(response)
   end
 
