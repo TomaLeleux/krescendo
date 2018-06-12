@@ -17,8 +17,16 @@ class DeezerApiService
   end
 
   def self.albums(artist_id)
-    response = RestClient.get "https://api.deezer.com/artist/#{artist_id}/albums"
-    return JSON.parse(response)
+    albums = Ohm.redis.call "GET", "albums_#{artist_id}"
+    if albums.nil?
+      response = RestClient.get "https://api.deezer.com/artist/#{artist_id}/albums"
+      albums = JSON.parse(response)
+      Ohm.redis.call "SET", "albums_#{artist_id}", albums.to_json
+    else
+      p "data from cache"
+      albums = JSON.load albums
+    end
+    return albums
   end
 
   def self.detailed_album(album_id)
@@ -47,13 +55,29 @@ class DeezerApiService
   end
 
   def self.artist(artist_id)
-    response = RestClient.get "https://api.deezer.com/artist/#{artist_id}"
-    return JSON.parse(response)
+    artist = Ohm.redis.call "GET", artist_id
+    if artist.nil?
+      response = RestClient.get "https://api.deezer.com/artist/#{artist_id}"
+      artist = JSON.parse(response)
+      Ohm.redis.call "SET", artist_id, artist.to_json
+    else
+      p "data from cache"
+      artist = JSON.load artist
+    end
+    return artist
   end
 
   def self.album(album_id)
-    response = RestClient.get "https://api.deezer.com/album/#{album_id}"
-    return JSON.parse(response)
+    album = Ohm.redis.call "GET", album_id
+    if album.nil?
+      response = RestClient.get "https://api.deezer.com/album/#{album_id}"
+      album = JSON.parse(response)
+      Ohm.redis.call "SET", album_id, album.to_json
+    else
+      p "data from cache"
+      album = JSON.load album
+    end
+    return album
   end
 
   def self.track(track_id)
