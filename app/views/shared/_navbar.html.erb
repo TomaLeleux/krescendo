@@ -1,60 +1,58 @@
 <div class="navbar-wagon">
   <!-- Logo -->
-  <div class="search-bar">
-    <%= form_tag search_path, method: :get do %>
-      <%= text_field_tag :keyword, params[:keyword], placeholder: "Artist, Song, Album", class: "form-control search-input" %>
-      <%= submit_tag "keyword", name: nil %>
-    <% end %>
+  <div class="navbar-wagon-desktop hidden-xs hidden-sm">
+    <%= render 'shared/search_bar' %>
 
-    <div class="loupe">
-      <span class="fa fa-search" id="loupe"></span>
+    <div class="flex-avatar">
+      <div class="avatar-lg">
+        <% if current_user.nil? || current_user.photo.blank? %>
+        <%= image_tag "user.png", class: "unlogged avatar-lg",height: 300, width: 400, crop: :fill, alt:"", id: "avatar-navbar" %>
+        <% else %>
+        <%= cl_image_tag current_user.photo, height: 300, width: 400, crop: :fill, class: "avatar-lg", id: "avatar-navbar", "data-toggle" => "dropdown" %>
+        <% end %>
+      </div>
     </div>
-  </div>
+    <div class="flex-group player-on">
+      <% if user_signed_in? %>
 
-  <div class="flex-avatar">
-    <div class="avatar-lg">
-      <% if current_user.nil? || current_user.photo.blank? %>
-      <%= image_tag "user.png", class: "unlogged avatar-lg",height: 300, width: 400, crop: :fill, alt:"", id: "avatar-navbar" %>
+      <div class="flex-item navlink ">
+        <span class = "fa fa-eject"></span> <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+      </div>
+
+      <div class="flex-item navlink">
+        <span class = "fa fa-play"></span> <%= link_to "Playlist", playlists_path %>
+      </div>
+
+      <div class="flex-item navlink">
+        <span class = "fa fa-play"></span> <%= link_to "Profile", edit_user_registration_path %>
+      </div>
+
       <% else %>
-      <%= cl_image_tag current_user.photo, height: 300, width: 400, crop: :fill, class: "avatar-lg", id: "avatar-navbar", "data-toggle" => "dropdown" %>
+
+      <div class="flex-item navlink">
+        <span class = "fa fa-play"></span> <%= link_to "  Login", new_user_session_path %>
+      </div>
+      <div class="flex-item navlink">
+        <span class = "fa fa-play"></span> <%= link_to "  Sign-up", new_user_registration_path %>
+      </div>
+
       <% end %>
     </div>
+    <div class="music-player invisible">
+      test
+    </div>
+    <div class="flex-item social">
+      <a href="#"><i class="fa fa-github"></i></a>
+      <a href="#"><i class="fa fa-instagram"></i></a>
+      <a href="#"><i class="fa fa-facebook"></i></a>
+      <a href="#"><i class="fa fa-twitter"></i></a>
+      <a href="#"><i class="fa fa-linkedin"></i></a>
+    </div>
   </div>
-  <div class="flex-group player-on">
-    <% if user_signed_in? %>
 
-    <div class="flex-item navlink ">
-      <span class = "fa fa-eject"></span> <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-    </div>
+  <div class="navbar-wagon-item hidden-md hidden-lg">
+    <%= render 'shared/search_bar' %>
 
-    <div class="flex-item navlink">
-      <span class = "fa fa-play"></span> <%= link_to "Playlist", playlists_path %>
-    </div>
-
-    <div class="flex-item navlink">
-      <span class = "fa fa-play"></span> <%= link_to "Profile", edit_user_registration_path %>
-    </div>
-
-    <% else %>
-
-    <div class="flex-item navlink">
-      <span class = "fa fa-play"></span> <%= link_to "  Login", new_user_session_path %>
-    </div>
-    <div class="flex-item navlink">
-      <span class = "fa fa-play"></span> <%= link_to "  Sign-up", new_user_registration_path %>
-    </div>
-
-    <% end %>
-  </div>
-  <div class="music-player invisible">
-    test
-  </div>
-  <div class="flex-item social">
-    <a href="#"><i class="fa fa-github"></i></a>
-    <a href="#"><i class="fa fa-instagram"></i></a>
-    <a href="#"><i class="fa fa-facebook"></i></a>
-    <a href="#"><i class="fa fa-twitter"></i></a>
-    <a href="#"><i class="fa fa-linkedin"></i></a>
   </div>
 
 
