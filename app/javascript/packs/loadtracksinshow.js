@@ -3,14 +3,6 @@ import {loadAlbum} from './reloadshow'
 import {albumrefresh} from './reloadshow'
 import {trackRefresh} from './reloadshow'
 
-const addButtonToPlaylist = () => {
-  const tracklist = document.getElementById('tracklist').children;
-  const length = tracklist.length;
-  for (let i = 0; i < length; i++) {
-    tracklist[i].innerHTML += '  <a style="cursor: pointer;"><i class="fa fa-plus" aria-hidden="true"></i></a>'
-  }
-};
-
 const buildHref = (href, id) => {
   let count = 0;
   let newHref = '';
@@ -113,6 +105,8 @@ if (document.querySelector('.album-id')){
       console.log(error);
     });
   }
+
+export { addListenerToButton };
 
 //element structure :
 // disk_number:2

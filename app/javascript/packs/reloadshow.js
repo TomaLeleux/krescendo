@@ -1,29 +1,5 @@
 import axios from 'axios';
-
-const buildHref = (href, id) => {
-  let count = 0;
-  let newHref = '';
-  for (let i = 0; i < href.length && count !== 3; i++) {
-    if (href[i] === '/') {
-      count++;
-    }
-    newHref += href[i];
-  }
-  if (count === 3) {
-    newHref += id;
-  } else {
-    newHref += '/' + id;
-  }
-  return (newHref);
-};
-
-const addListenerToButton = (id, body, modal) => {
-  for (let i = 0; i < body.length; i++) {
-    const newLink = buildHref(body[i].getAttribute('href'), id);
-    body[i].setAttribute('href', newLink);
-  };
-  modal.style.display = "block";
-};
+import {addListenerToButton} from './loadtracksinshow.js'
 
 function trackRefresh() {
   const trackOnAir = this.parentNode.firstElementChild;
