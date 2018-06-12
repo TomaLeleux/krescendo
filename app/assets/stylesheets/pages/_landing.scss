@@ -1,0 +1,25 @@
+.landing {
+  color: white;
+  // text-align: center;
+  height: 50vh;
+  /* if you have a 70px navbar => height: calc(100vh - 70px); */
+  background-size: cover !important;
+  display: flex;
+  align-items: center;
+  background-image: linear-gradient(-225deg, rgba(13,18,25,0.2) 0%, rgba(13,18,25,0.3) 50%), url('landing.jpg')
+}
+.landing-content{
+  margin-left: 5%;
+}
+.landing h1 {
+  font-size: 4.6vw;
+  font-weight: bold;
+  text-shadow: 0px 1px rgba(0, 0, 0, 0.2);
+}
+// .landing p {
+//   font-size: 25px;
+//   font-weight: lighter;
+//   color: rgb(255, 255, 255);
+//   opacity: 0.6;
+//   margin-bottom: 30px;
+// }
