@@ -10,6 +10,5 @@ Rails.application.routes.draw do
   get '/details/:id', to: 'pages#show', as: 'details'
   get '/albumtracks/:id', to: 'pages#tracks_by_album'
   get '/tracksLyrics/:id', to: 'pages#lyric_by_track'
-  get '/tracksTranslation/:id', to: 'pages#translation_for_tracks'
 
 end
