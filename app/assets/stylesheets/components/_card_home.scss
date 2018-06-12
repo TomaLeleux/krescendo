@@ -1,5 +1,5 @@
 .card-display {
-  color: white;
+  color: $color1;
   text-align: center;
 
   // position: relative;
@@ -19,4 +19,9 @@
 
 .card-picto {
   font-size: 3vw;
+}
+@media (max-width: 800px) {
+  .card-picto {
+    font-size: 10vw;
+  }
 }

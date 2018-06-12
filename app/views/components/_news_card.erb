@@ -1,7 +1,7 @@
 <%= link_to article["url"], target: "_blank", class: 'clickable-card' do %>
   <div class="long-card">
     <div class="news">
-      <div>
+      <div class="news-image">
         <%= image_tag article["urlToImage"].nil? ? "" : article["urlToImage"], class: 'thumbnail' %>
       </div>
       <div class="content">
