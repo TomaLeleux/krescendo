@@ -43,10 +43,13 @@ $font-w: 400;
 
 #music-player {
   height: 200px;
-  background-color: red;
   width: 200px;
   position: absolute;
   bottom: 10px;
+}
+
+.thumbnail .picture-img {
+  width: 200px;
 }
 
 .navlink {

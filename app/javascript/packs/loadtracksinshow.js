@@ -139,7 +139,7 @@ if (document.querySelector('.details-body')){
           if (wscreen > 800){
           //desktop
           document.getElementById('tracklist').insertAdjacentHTML('beforeend',`<tr class="on-air"><th class="first-track" id="${element['id']}" data-artist="${element['artist']['name']}" data-song="${element['title_short']}"></th>
-            <th class="track-name">${element['title_short']}</th>
+            <th class="track-name">${element['track_position']}. ` + `${element['title_short']} (` + convert(`${element['duration']}`) + `)</th>
               <span class="menu-tracks">
               <th class="play-track"><i class="fa fa-play-circle" aria-hidden="true">  play track</i></th>
               <th class="scroll-to-video"><i class="fa fa-video-camera" aria-hidden="true">  see video</i></th>
@@ -151,7 +151,7 @@ if (document.querySelector('.details-body')){
           //mobile
           document.getElementById('tracklist').insertAdjacentHTML('beforeend',`<tr class="on-air">
             <th class="first-track" id="${element['id']}" data-artist="${element['artist']['name']}" data-song="${element['title_short']}"></th>
-            <th class="track-name">${element['title_short']}</th>
+            <th class="track-name">${element['track_position']}. ` + `${element['title_short']} (` + convert(`${element['duration']}`) + `)</th>
               <span class="menu-tracks">
               <th class="play-track"><i class="fa fa-play-circle" aria-hidden="true"></i></th>
               <th class="scroll-to-video"><i class="fa fa-video-camera" aria-hidden="true"></i></th>
@@ -163,7 +163,7 @@ if (document.querySelector('.details-body')){
           document.getElementById(`${element['id']}`).parentNode.querySelector('.add-to-playlist').onclick = function () {
             addListenerToButton(element['id']);
           };
-          document.querySelector('.track-name').innerText = `${element['title_short']}`;
+          document.querySelector('.track-name').innerText = `${element['track_position']}. ` + `${element['title_short']}  (` + convert(`${element['duration']}`) + `)`;
           document.getElementById(`${element['id']}`).parentNode.querySelector('.play-track').addEventListener('click', trackRefresh, false);
           document.getElementById(`${element['id']}`).parentNode.querySelector('.scroll-to-video').addEventListener('click', scrolltoVideo, false);
           document.getElementById(`${element['id']}`).parentNode.querySelector('.scroll-to-lyrics').addEventListener('click', scrolltoLyrics, false);
@@ -176,7 +176,7 @@ if (document.querySelector('.details-body')){
           if (wscreen > 800){
           //desktop
           document.getElementById('tracklist').insertAdjacentHTML('beforeend',`<tr><th class="other-track" id="${element['id']}" data-artist="${element['artist']['name']}" data-song="${element['title_short']}"></th>
-            <th class="track-name">${element['title_short']}</th>
+            <th class="track-name">${element['track_position']}. ` + `${element['title_short']}  (` + convert(`${element['duration']}`) + `)</th>
               <span class="menu-tracks">
               <th class="play-track"><i class="fa fa-play-circle" aria-hidden="true">  play track</i></th>
               <th class="scroll-to-video"><i class="fa fa-video-camera" aria-hidden="true">  see video</i></th>
@@ -188,7 +188,7 @@ if (document.querySelector('.details-body')){
           //mobile
           document.getElementById('tracklist').insertAdjacentHTML('beforeend',`<tr>
             <th class="other-track" id="${element['id']}" data-artist="${element['artist']['name']}" data-song="${element['title_short']}"></th>
-            <th class="track-name">${element['title_short']}</th>
+            <th class="track-name">${element['track_position']}. ` + `${element['title_short']} (` + convert(`${element['duration']}`) + `)</th>
               <span class="menu-tracks">
               <th class="play-track"><i class="fa fa-play-circle" aria-hidden="true"></i></th>
               <th class="scroll-to-video"><i class="fa fa-video-camera" aria-hidden="true"></i></th>
@@ -226,6 +226,19 @@ if (document.querySelector('.details-body')){
       console.log(error);
     });
   }
+
+const convert = (value) => {
+  let hr = ~~(value / 3600);
+  let min = ~~((value % 3600) / 60);
+  let sec = value % 60;
+  let sec_min = "";
+  if (hr > 0) {
+     sec_min += "" + hrs + ":" + (min < 10 ? "0" : "");
+  }
+  sec_min += "" + min + ":" + (sec < 10 ? "0" : "");
+  sec_min += "" + sec;
+  return sec_min+ " min";
+};
 
   export { addListenerToButton };
   export {scrolltoLyrics}
