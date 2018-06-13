@@ -3,11 +3,12 @@ class LyricsFetchService
   def self.call(artist, song)
     fetcher = Lyricfy::Fetcher.new
     begin
-      lyric = fetcher.search artist, song
+      lyric = fetcher.search artist, song.titleize
+      p artist
     rescue
       return "Sorry no lyrics available for this song"
     else
-      if !song.nil?
+      if !lyric.nil?
         return lyric.body('<br>')
       else
         return "Sorry no lyrics available for this song"

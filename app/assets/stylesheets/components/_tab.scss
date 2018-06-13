@@ -22,3 +22,18 @@ ul .active {
   color: $color4!important;
   }
 }
+
+@media (max-width: 800px) {
+  ul {
+    display: inline-flex;
+    width:100%;
+  }
+  .tab-self a {
+  padding: 5px 5px !important;
+  &:hover {
+    // color: white!important;
+    color: $color4!important;
+    transition: 0.7s!important;
+  }
+}
+}
