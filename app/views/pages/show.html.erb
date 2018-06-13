@@ -46,22 +46,24 @@
 <div class="details-body">
  <div class="right-side">
   <div class="left-side">
+    <div class="table-title">
     <h3>Tracks</h3>
-
-    <ul id="tracklist">
-
-     <!--  <li class="on-air first-track"><span class="active-track" id="" data-artist="" data-song=""></span><i class="fa fa-play-circle" aria-hidden="true"></i><span class="track-name"></span></li> -->
-   </ul>
-   <% # audio_tag track['preview'], :type => "audio/mp3", :controls => true %>
+    </div>
+    <table class="table" id="tracklist">
+      <tbody>
+      </tbody>
+    </table>
  </div>
  <div class="container-show">
   <div class="row">
     <div class="col-xs-12 col-md-6 space-padding">
       <div class="card-show">
         <h5>Video</h5>
+        <div class="video-container">
         <iframe id="player" type="text/html" width="640" height="360"
         src=""
         frameborder="0"></iframe>
+        </div>
       </div>
     </div>
     <div class="col-xs-12 col-md-6 space-padding">
