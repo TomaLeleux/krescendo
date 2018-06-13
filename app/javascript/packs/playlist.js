@@ -26,17 +26,6 @@ const collapsePlaylist = (event) => {
   togglePlaylist(caret, tableDiv);
 };
 
-// const addButtonToPlaylist = () => {
-//   const tracklist = document.getElementById('tracklist')
-//   tracklist.children.forEach((child) => {
-//     if (child.tagName === 'LI') {
-//       const id = child.id;
-//       child.innerHTML += '<i class="fa fa-plus" aria-hidden="true"></i>'
-//       console.log(child.children);
-//     }
-//   });
-// };
-
 const listenToPlaylist = () => {
   const playlists = document.querySelectorAll('.playlist .flex-container');
   playlists.forEach((playlist) => {
