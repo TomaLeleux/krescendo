@@ -38,15 +38,21 @@
 
       <% end %>
     </div>
-    <div class="music-player invisible">
-      test
-    </div>
-    <div class="flex-item social">
-      <a href="#"><i class="fa fa-github"></i></a>
-      <a href="#"><i class="fa fa-instagram"></i></a>
-      <a href="#"><i class="fa fa-facebook"></i></a>
-      <a href="#"><i class="fa fa-twitter"></i></a>
-      <a href="#"><i class="fa fa-linkedin"></i></a>
+    <div class="music-player" id="music-player">
+      <div id="dz-root"></div>
+      <script>
+        DZ.init({
+          appId  : <%= ENV['DEEZER_APP_ID'] %>,
+          channelUrl : 'http://www.crescendo.icu/channel.html',
+          player : {
+            container: 'music-player',
+            width : 200,
+            height : 200,
+            format : 'square',
+            onload : function(){}
+          }
+        });
+      </script>
     </div>
   </div>
 
