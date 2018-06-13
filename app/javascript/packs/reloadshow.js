@@ -113,7 +113,7 @@ function albumrefresh(){
           document.getElementById(`${element['id']}`).parentNode.querySelector('.scroll-to-video').addEventListener('click', scrolltoVideo, false);
           document.getElementById(`${element['id']}`).parentNode.querySelector('.scroll-to-lyrics').addEventListener('click', scrolltoLyrics, false);
 
-          document.getElementById(`${element['id']}`).parentNode.lastChild.onclick = function () {
+          document.getElementById(`${element['id']}`).parentNode.querySelector('.add-to-playlist').onclick = function () {
             addListenerToButton(element['id']);
           };
         }
