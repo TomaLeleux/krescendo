@@ -10,13 +10,13 @@
       <% current_user.playlists.each do |playlist| %>
         <button class="btn btn-primary" id="<%= playlist.id %>"><%= playlist.name %></button>
       <% end %>
-      <button class="btn btn-primary" id="new">New playlist</button>
+      <button class="btn btn-primary" id="new">Create new playlist</button>
       <div class="reveal-if-active">
         <input type="text" name="name" id="new-playlist-name" placeholder="Playlist name">
       </div>
     </div>
     <div class="modal-footer">
-      <%= link_to 'Add to playlist', track_to_playlist_path('', ''), class: 'btn btn-primary', method: :post, remote: true %>
+      <%= link_to 'Add to playlist', track_to_playlist_path('', ''), class: 'btn btn-primary', id: 'add-to-playlist', method: :post, remote: true %>
     </div>
   </div>
 

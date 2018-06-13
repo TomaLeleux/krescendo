@@ -76,7 +76,7 @@
 
 .modal-header {
     padding: 2px 16px;
-    background-color: #5cb85c;
+    background-color: $color1;
     color: white;
 }
 
@@ -89,7 +89,7 @@
 
 .modal-footer {
     padding: 2px 16px;
-    background-color: #5cb85c;
+    background-color: $color1;
     color: white;
 }
 
@@ -112,4 +112,19 @@
   opacity: 1;
   max-height: 100px; /* little bit of a magic number :( */
   overflow: visible;
+}
+
+.selected, .selected:focus {
+  background-color: $brand-success;
+  border-color: $brand-success;
+}
+
+#add-to-playlist {
+  background-color: $brand-success;
+  border-color: $brand-success;
+}
+
+#add-to-playlist.disabled {
+  background-color: $brand-danger;
+  border-color: $brand-danger;
 }
