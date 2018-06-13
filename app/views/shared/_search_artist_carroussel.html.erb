@@ -10,7 +10,7 @@
   <div class="carousel-inner" role="listbox">
     <div class="item active">
       <div class="row hidden-xs hidden-sm desktop">
-        <% @artists["data"].first(4).each do |artist| %>
+        <% @artists["data"].first(3).each do |artist| %>
           <div class="col-xs-6 col-md-4">
             <%= render 'components/search_artist_card', artist: artist %>
           </div>
@@ -25,7 +25,7 @@
       </div>
     </div>
 
-    <% @artists["data"].drop(4).each_slice(4) do |four_artist| %>
+    <% @artists["data"].drop(3).each_slice(3) do |four_artist| %>
       <div class="item hidden-xs hidden-sm desktop">
         <div class="row">
           <% four_artist.each do |artist| %>

@@ -1,8 +1,13 @@
 import axios from 'axios';
 import {addListenerToButton} from './loadtracksinshow.js'
+import {scrolltoLyrics} from './loadtracksinshow.js'
+import {scrolltoVideo} from './loadtracksinshow.js'
 
+
+const wscreen = window.innerWidth;
 function trackRefresh() {
   const trackOnAir = this.parentNode.firstElementChild;
+  console.log(this.parentNode);
   document.querySelector(".on-air").classList.remove("on-air");
   this.parentNode.classList.add("on-air");
   const trackId = trackOnAir.getAttribute("id");
@@ -41,23 +46,76 @@ function albumrefresh(){
       const modal = document.getElementById('playlist-modal');
       const body = modal.querySelector('.modal-body').children;
       if (i == 'first'){
-        const searchPlayer = element['artist']['name'].toLowerCase().split(' ').join('+')+'+'+element['title_short'].toLowerCase().split(' ').join('+');
-        document.getElementById('player').setAttribute('src',"https://www.youtube.com/embed?listType=search&list="+searchPlayer)
-        targetTrack.setAttribute('id',`${element['id']}`);
-        targetTrack.setAttribute('data-artist',`${element['artist']['name']}`);
-        targetTrack.setAttribute('data-song',`${element['title_short']}`);
-        document.querySelector('.track-name').innerText = `${element['title_short']}`;
-        document.getElementById(`${element['id']}`).parentNode.querySelector('.fa').addEventListener('click', trackRefresh, false);
-        i = '';
-      }else{
+          const searchPlayer = element['artist']['name'].toLowerCase().split(' ').join('+')+'+'+element['title_short'].toLowerCase().split(' ').join('+');
+          document.getElementById('player').setAttribute('src',"https://www.youtube.com/embed?listType=search&list="+searchPlayer)
+          if (wscreen > 800){
+          //desktop
+          document.getElementById('tracklist').insertAdjacentHTML('beforeend',`<tr class="on-air"><th class="first-track" id="${element['id']}" data-artist="${element['artist']['name']}" data-song="${element['title_short']}"></th>
+            <th class="track-name">${element['title_short']}</th>
+              <span class="menu-tracks">
+              <th class="play-track"><i class="fa fa-play-circle" aria-hidden="true">  play track</i></th>
+              <th class="scroll-to-video"><i class="fa fa-video-camera" aria-hidden="true">  see video</i></th>
+              <th class="scroll-to-lyrics"><i class="fa fa-microphone" aria-hidden="true">  see lyrics</i></th>
+              <th class="add-to-playlist"><i class="fa fa-plus" aria-hidden="true">  add to playlist</i></th>
+              </span>
+            </tr>`);
+          } else {
+          //mobile
+          document.getElementById('tracklist').insertAdjacentHTML('beforeend',`<tr class="on-air">
+            <th class="first-track" id="${element['id']}" data-artist="${element['artist']['name']}" data-song="${element['title_short']}"></th>
+            <th class="track-name">${element['title_short']}</th>
+              <span class="menu-tracks">
+              <th class="play-track"><i class="fa fa-play-circle" aria-hidden="true"></i></th>
+              <th class="scroll-to-video"><i class="fa fa-video-camera" aria-hidden="true"></i></th>
+              <th class="scroll-to-lyrics"><i class="fa fa-microphone" aria-hidden="true"></i></th>
+              <th class="add-to-playlist"><i class="fa fa-plus" aria-hidden="true"></i></th>
+              </span>
+            </tr>`)
+          }
+          document.getElementById(`${element['id']}`).parentNode.querySelector('.add-to-playlist').onclick = function () {
+            addListenerToButton(element['id']);
+          };
+          document.querySelector('.track-name').innerText = `${element['title_short']}`;
+          document.getElementById(`${element['id']}`).parentNode.querySelector('.play-track').addEventListener('click', trackRefresh, false);
+          document.getElementById(`${element['id']}`).parentNode.querySelector('.scroll-to-video').addEventListener('click', scrolltoVideo, false);
+          document.getElementById(`${element['id']}`).parentNode.querySelector('.scroll-to-lyrics').addEventListener('click', scrolltoLyrics, false);
+
+          i = '';
+        }else{
           //add in track list the other tracks with class active
-          document.getElementById('tracklist').insertAdjacentHTML('beforeend',`<li><span class="other-track" id="${element['id']}" data-artist="${element['artist']['name']}" data-song="${element['title_short']}"></span><i class="fa fa-play-circle" aria-hidden="true"></i><span class="track-name">${element['title_short']}</span>  <a style="cursor: pointer;"><i class="fa fa-plus" aria-hidden="true"></i></a></li>`);
-          document.getElementById(`${element['id']}`).parentNode.querySelector('.fa').addEventListener('click', trackRefresh, false);
+          if (wscreen > 800){
+          //desktop
+          document.getElementById('tracklist').insertAdjacentHTML('beforeend',`<tr><th class="other-track" id="${element['id']}" data-artist="${element['artist']['name']}" data-song="${element['title_short']}"></th>
+            <th class="track-name">${element['title_short']}</th>
+              <span class="menu-tracks">
+              <th class="play-track"><i class="fa fa-play-circle" aria-hidden="true">  play track</i></th>
+              <th class="scroll-to-video"><i class="fa fa-video-camera" aria-hidden="true">  see video</i></th>
+              <th class="scroll-to-lyrics"><i class="fa fa-microphone" aria-hidden="true">  see lyrics</i></th>
+              <th class="add-to-playlist"><i class="fa fa-plus" aria-hidden="true">  add to playlist</i></th>
+              </span>
+            </tr>`);
+          } else {
+          //mobile
+          document.getElementById('tracklist').insertAdjacentHTML('beforeend',`<tr>
+            <th class="other-track" id="${element['id']}" data-artist="${element['artist']['name']}" data-song="${element['title_short']}"></th>
+            <th class="track-name">${element['title_short']}</th>
+              <span class="menu-tracks">
+              <th class="play-track"><i class="fa fa-play-circle" aria-hidden="true"></i></th>
+              <th class="scroll-to-video"><i class="fa fa-video-camera" aria-hidden="true"></i></th>
+              <th class="scroll-to-lyrics"><i class="fa fa-microphone" aria-hidden="true"></i></th>
+              <th class="add-to-playlist"><i class="fa fa-plus" aria-hidden="true"></i></th>
+              </span>
+            </tr>`)
+          }
+          // document.getElementById('tracklist').insertAdjacentHTML('beforeend',`<li><span class="other-track" id="${element['id']}" data-artist="${element['artist']['name']}" data-song="${element['title_short']}"></th><th class="track-name">${element['title_short']}</th><i class="fa fa-play-circle" aria-hidden="true"></i><a style="cursor: pointer;"><i class="fa fa-plus" aria-hidden="true"></i></a></li>`)
+          document.getElementById(`${element['id']}`).parentNode.querySelector('.play-track').addEventListener('click', trackRefresh, false);
+          document.getElementById(`${element['id']}`).parentNode.querySelector('.scroll-to-video').addEventListener('click', scrolltoVideo, false);
+          document.getElementById(`${element['id']}`).parentNode.querySelector('.scroll-to-lyrics').addEventListener('click', scrolltoLyrics, false);
+
           document.getElementById(`${element['id']}`).parentNode.lastChild.onclick = function () {
             addListenerToButton(element['id']);
           };
         }
-        // setTimeout(load,1000);
       });
       //add in lyrics the first track
       let idTrack = parseInt(targetTrack.getAttribute("id"));
