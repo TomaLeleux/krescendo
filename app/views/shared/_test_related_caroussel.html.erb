@@ -1,48 +1,47 @@
 <div id="artists-carousel" class="carousel slide" data-interval="false" data-ride="carousel">
   <ol class="carousel-indicators">
     <li data-target="#artists-carousel" data-slide-to="0" class="active"></li>
-    <% counter = (@artists["data"].size / 4) %>
+    <% related = DeezerApiService.related_artists(@artist["id"]) %>
+    <% counter = related["data"].size / 3 %>
     <% counter.times do |i| %>
       <li data-target="#artists-carousel" data-slide-to='<%= "#{i + 1}" %>' class></li>
     <% end %>
   </ol>
-
   <div class="carousel-inner" role="listbox">
     <div class="item active">
       <div class="row hidden-xs hidden-sm desktop">
-        <% @artists["data"].first(4).each do |artist| %>
-          <div class="col-xs-6 col-md-4">
-            <%= render 'components/search_artist_card', artist: artist %>
+        <% related["data"].first(3).each do |artist| %>
+          <div class="col-xs-1 col-xs-offset-2">
+            <%= render 'components/related_card', artist: artist %>
           </div>
         <% end %>
       </div>
-    <div class="row hidden-md hidden-lg mobile">
-        <% @artists["data"].first(1).each do |artist| %>
+      <div class="row hidden-md hidden-lg mobile">
+        <% related["data"].first(1).each do |artist| %>
           <div class="col-xs-12 col-md-3 col-md-offset-2">
-            <%= render 'components/search_artist_card', artist: artist %>
+            <%= render 'components/related_card', artist: artist %>
           </div>
         <% end %>
       </div>
     </div>
-
-    <% @artists["data"].drop(4).each_slice(4) do |four_artist| %>
+    <% related["data"].drop(3).each_slice(3) do |four_artist| %>
       <div class="item hidden-xs hidden-sm desktop">
         <div class="row">
           <% four_artist.each do |artist| %>
-            <div class="col-xs-6 col-md-4">
-              <%= render 'components/search_artist_card', artist: artist %>
+            <div class="col-xs-1 col-xs-offset-2">
+              <%= render 'components/related_card', artist: artist %>
             </div>
           <% end %>
         </div>
       </div>
     <% end %>
 
-     <% @artists["data"].drop(1).each_slice(1) do |four_artist| %>
+    <% related["data"].drop(1).each_slice(1) do |four_artist| %>
       <div class="item hidden-md hidden-lg mobile">
         <div class="row">
           <% four_artist.each do |artist| %>
             <div class="col-xs-12 col-md-3 col-md-offset-2">
-              <%= render 'components/search_artist_card', artist: artist %>
+              <%= render 'components/related_card', artist: artist %>
             </div>
           <% end %>
         </div>

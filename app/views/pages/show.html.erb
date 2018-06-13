@@ -1,13 +1,11 @@
 <%= render 'shared/modal_playlist' %>
 <div class="container-artist-information">
   <div class="artist-data-mobile">
-    <div class="photo-artist">
-      <%= image_tag @artist["picture_medium"], id: "photo-art" %>
-    </div>
     <div class="info-artist">
+      <div class="photo-artist">
+        <%= image_tag @artist["picture_medium"], id: "photo-art" %>
+      </div>
       <h3 id="artist-name"><%= @artist["name"] %></h3>
-      <%= link_to "see wiki", @artist["link"], target: "_blank", id: "wiki-link" %>
-      <%= link_to "add to playlist", ""  %>
       <p>
         <% rating = (0..5).to_a.sample %>
         <% if rating > 0  %>
@@ -34,18 +32,19 @@
     <div class="tab-content">
       <div id="albums" class="tab-pane fade in active">
         <div class="album-carroussel">
-          <%= render 'shared/album_carroussel' %>
+          <%= render 'shared/test_carroussel' %>
         </div>
       </div>
       <div id="related" class="tab-pane fade">
         <div class="artist-carroussel">
-          <%= render 'shared/related_carroussel' %>
+          <%= render 'shared/test_related_caroussel' %>
         </div>
       </div>
     </div>
   </div>
 </div>
 <div class="details-body">
+ <div class="right-side">
   <div class="left-side">
     <h3>Tracks</h3>
 
@@ -55,42 +54,35 @@
    </ul>
    <% # audio_tag track['preview'], :type => "audio/mp3", :controls => true %>
  </div>
- <div class="right-side">
-  <div class="container-show">
-    <div class="row">
-      <div class="col-xs-6 space-padding">
-        <div class="card-show">
-          Video
-          <iframe id="player" type="text/html" width="640" height="360"
-          src=""
-          frameborder="0"></iframe>
-        </div>
+ <div class="container-show">
+  <div class="row">
+    <div class="col-xs-12 col-md-6 space-padding">
+      <div class="card-show">
+        <h5>Video</h5>
+        <iframe id="player" type="text/html" width="640" height="360"
+        src=""
+        frameborder="0"></iframe>
       </div>
-      <div class="col-xs-6 space-padding">
-        <div class="card-show">
-          Lyrics
+    </div>
+    <div class="col-xs-12 col-md-6 space-padding">
+      <div class="card-show">
+        <div class="option-lyrics">
+          <div class="title-lyrics">
+            <h5>Lyrics</h5>
+          </div>
           <span id="menu-lyrics">
             <i class="fa fa-play-circle" id="scroll" aria-hidden="true"></i>
             <i class="fa fa-pause-circle" aria-hidden="true" id="pause"></i>
             <i class="fa fa-stop-circle" aria-hidden="true" id="stop"></i>
-            <span>
-              <span id="intervalID" hidden></span>
-              <div id="lyrics">
-                <!-- controller Show lyric_by_track -->
-              </div>
-            </div>
-          </div>
-          <div class="col-xs-6 space-padding">
-            <div class="card-show">
-              Goodies
-            </div>
-          </div>
-          <div class="col-xs-6 space-padding">
-            <div class="card-show">
-              Pictures
-            </div>
-          </div>
+          </span>
+          <span id="intervalID" hidden></span>
+        </div>
+        <div id="lyrics">
+          <!-- controller Show lyric_by_track -->
         </div>
       </div>
     </div>
   </div>
+</div>
+</div>
+</div>

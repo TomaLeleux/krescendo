@@ -45,7 +45,7 @@ const addListenersForPlaylist = () => {
   }
 };
 
-if (document.querySelector('.album-id')){
+if (document.querySelector('.details-body')){
   const idAlbum =  document.querySelector('.album-id').dataset.album
   let i = 'first'
   console.log(idAlbum);

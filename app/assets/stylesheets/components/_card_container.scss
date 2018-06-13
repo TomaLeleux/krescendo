@@ -66,12 +66,10 @@
 }
 
 .container-partner{
-  color: white;
+  color: $color2;
   margin-top: 30px;
   padding: 20px 20px;
-  background: linear-gradient(rgba(13,18,25,0.9),rgba(13,18,25,0.7));
-  border-radius: 4px;
-  box-shadow: 1px 1px 2px $color2;
+  background: linear-gradient(rgba(13,18,25,0.1),rgba(13,18,25,0.2));
   .flex-list{
     display: flex;
     justify-content: space-around;
@@ -82,6 +80,7 @@
 @media (max-width: 800px) {
   .container-home-artist {
     padding: 0px 1px;
+    height: auto;
   }
   .container-artist-information{
     display: block;

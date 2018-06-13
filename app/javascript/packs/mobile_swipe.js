@@ -67,6 +67,7 @@ function myfunction(el,d) {
     }
   }
 }
+if (document.getElementById('artists-carousel')){
   document.addEventListener('DOMContentLoaded', (e)=>{
     detectswipe('artists-carousel',myfunction);
   })
@@ -75,5 +76,5 @@ function myfunction(el,d) {
     detectswipe('artists-carousel',myfunction);
     })
   })
-
+}
 
