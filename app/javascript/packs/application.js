@@ -9,3 +9,4 @@ if (document.querySelectorAll('.playlist .flex-container')) {
 import './loadtracksinshow.js'
 import './reloadshow.js'
 import './mobile_swipe.js'
+import './responsivedesign.js'
