@@ -20,7 +20,16 @@
       </div>
 
       <div class="flex-item navlink">
-        <span class = "fa fa-play"></span> <%= link_to "Playlist", playlists_path %>
+        <%= link_to playlists_path, data: { toggle: 'dropdown'}, class: 'dropdown-toggle' do %>
+          Playlist <span class="caret"></span>
+        <% end %>
+        <ul class="playlist-navbar hidden">
+          <% current_user.playlists.each do |playlist| %>
+            <li>
+              <%= link_to playlist.name, '#' %>
+            </li>
+          <% end %>
+        </ul>
       </div>
 
       <div class="flex-item navlink">
