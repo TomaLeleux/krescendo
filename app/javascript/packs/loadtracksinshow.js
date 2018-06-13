@@ -3,16 +3,16 @@ import {loadAlbum} from './reloadshow'
 import {albumrefresh} from './reloadshow'
 import {trackRefresh} from './reloadshow'
 
-const addTrackToHref = (href, id) => {
+const addToHref = (href, id, type) => {
   let count = 0;
   let newHref = '';
-  for (let i = 0; i < href.length && count !== 2; i++) {
+  for (let i = 0; i < href.length && count !== type; i++) {
     if (href[i] === '/') {
       count++;
     }
     newHref += href[i];
   }
-  if (count === 2) {
+  if (count === type) {
     newHref += id;
   } else {
     newHref += '/' + id;
@@ -20,10 +20,23 @@ const addTrackToHref = (href, id) => {
   return (newHref);
 };
 
+const changeHrefWithInput = (event) => {
+  newBtn = document.getElementById('new');
+
+    console.log(event.target);
+  if (newBtn.classList.contains('selected')) {
+  }
+};
+
+const addListenerToNewPlaylistInput = (input) => {
+  console.log(input);
+  input.addEventListener('input', changeHrefWithInput);
+};
+
 const addListenerToButton = (id) => {
   const modal = document.getElementById('playlist-modal');
   const button = document.querySelector('.modal-footer').firstElementChild;
-  const newLink = addTrackToHref(button.getAttribute('href'), id);
+  const newLink = addToHref(button.getAttribute('href'), id, 2);
 
   button.setAttribute('href', newLink);
   button.classList.add('disabled');
@@ -38,7 +51,7 @@ const addListenerToPlaylistButton = (button) => {
     selected.classList.remove('selected');
   }
   button.classList.add('selected');
-  buttonSend.setAttribute('href', buttonSend.getAttribute('href') + '/' + button.getAttribute('id'));
+  buttonSend.setAttribute('href', addToHref(buttonSend.getAttribute('href'), button.getAttribute('id'), 3));
   buttonSend.classList.remove('disabled');
 };
 
@@ -70,6 +83,8 @@ const addListenersForPlaylist = () => {
       };
     }
   };
+
+  addListenerToPlaylistButton(document.getElementById('new-playlist-name'));
 
   button.onclick = function() {
     modal.style.display = "none";
