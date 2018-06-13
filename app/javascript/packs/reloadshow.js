@@ -54,7 +54,7 @@ function albumrefresh(){
           document.getElementById('tracklist').insertAdjacentHTML('beforeend',`<li><span class="other-track" id="${element['id']}" data-artist="${element['artist']['name']}" data-song="${element['title_short']}"></span><i class="fa fa-play-circle" aria-hidden="true"></i><span class="track-name">${element['title_short']}</span>  <a style="cursor: pointer;"><i class="fa fa-plus" aria-hidden="true"></i></a></li>`);
           document.getElementById(`${element['id']}`).parentNode.querySelector('.fa').addEventListener('click', trackRefresh, false);
           document.getElementById(`${element['id']}`).parentNode.lastChild.onclick = function () {
-            addListenerToButton(element['id'], body, modal);
+            addListenerToButton(element['id']);
           };
         }
         // setTimeout(load,1000);
