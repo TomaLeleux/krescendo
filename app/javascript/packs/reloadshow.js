@@ -21,6 +21,7 @@ function trackRefresh() {
   .catch(function (error) {
     console.log(error);
   });
+  DZ.player.playTracks([trackId]);
 };
 
 function albumrefresh(){
