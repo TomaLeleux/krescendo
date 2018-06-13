@@ -1,4 +1,5 @@
 import "bootstrap";
+import './navbar.js'
 import { listenToPlaylist } from './playlist';
 import './lyrcisscroll.js';
 
