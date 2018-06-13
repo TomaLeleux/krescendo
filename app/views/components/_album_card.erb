@@ -4,7 +4,7 @@
     <div class = "target-album-image" data-album=<%= album["id"]%>>
     <%= image_tag album["cover_medium"].nil? ? "" : album["cover_medium"], alt: 'Album photo', class: 'album-photo', 'data-album': album["id"] %>
     </div>
-    <i class="fa fa-play-circle" aria-hidden="true" onclick="DZ.player.playAlbum(<%= album['id'] %>);"></i>
+    <i class="fa fa-play-circle" aria-hidden="true" onclick="DZ.player.playAlbum(<%= album['id'] %>, 2);"></i>
     <% rating = (0..5).to_a.sample %>
     <% if rating > 0  %>
       <% diff = 5 - rating %>
