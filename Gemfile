@@ -12,6 +12,7 @@ gem 'redis-namespace'
 gem 'redis-rails'
 gem 'redis-rack-cache'
 gem 'ohm'
+gem 'i18n'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass', '~> 3.3'

@@ -23,3 +23,17 @@ $navbar-width: 200px;
   overflow: scroll;
   margin-left: 20px;
 }
+
+@media (max-width: 800px) {
+  .layout-container{
+    display: block;
+  }
+  .left-container{
+    width: 100%;
+    height: 10%;
+  }
+  .right-container{
+    margin: 0px;
+    padding: 10px 4px 0px 4px;
+  }
+}

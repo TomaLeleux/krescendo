@@ -13,4 +13,4 @@ import './loadtracksinshow.js'
 // }
 
 import './reloadshow.js'
-
+import './mobile_swipe.js'

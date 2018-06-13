@@ -17,7 +17,7 @@ class PagesController < ApplicationController
 
     @tracks = {}
     @albums["data"].each do |album|
-          @tracks[album['id']] = (DeezerApiService.tracks(album['id']))["data"]
+      @tracks[album['id']] = (DeezerApiService.tracks(album['id']))["data"]
     end
     @playlist_option_for_form = playlist_option
     @track = Track.new
@@ -33,7 +33,7 @@ class PagesController < ApplicationController
 
       @tracks = {}
       @albums["data"].each do |album|
-            @tracks[album['id']] = (DeezerApiService.tracks(album['id']))["data"]
+        @tracks[album['id']] = (DeezerApiService.tracks(album['id']))["data"]
       end
     end
   end

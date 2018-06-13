@@ -1,3 +1,5 @@
+require 'i18n'
+
 class SearchesController < ApplicationController
   before_action :set_search, only: [:index]
   skip_before_action :authenticate_user!, only: [:index, :show]
