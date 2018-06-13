@@ -21,15 +21,20 @@ const addToHref = (href, id, type) => {
 };
 
 const changeHrefWithInput = (event) => {
-  newBtn = document.getElementById('new');
+  const newBtn = document.getElementById('new');
 
-    console.log(event.target);
   if (newBtn.classList.contains('selected')) {
+    const button = document.querySelector('.modal-footer').firstElementChild;
+    button.setAttribute('href', addToHref(button.getAttribute('href'), 'new-' + event.target.value, 3));
+    if (!event.target.value) {
+      button.classList.add('disabled');
+    } else {
+      button.classList.remove('disabled');
+    }
   }
 };
 
 const addListenerToNewPlaylistInput = (input) => {
-  console.log(input);
   input.addEventListener('input', changeHrefWithInput);
 };
 
@@ -61,6 +66,7 @@ const addListenersForPlaylist = () => {
   const span = document.getElementsByClassName("close")[0];
   const button = document.querySelector('.modal-footer').firstElementChild;
   const playlistsButtons = document.querySelector('.modal-body').children;
+  const input = document.getElementById('new-playlist-name');
 
   // When the user clicks on <span> (x), close the modal
   span.onclick = function() {
@@ -80,11 +86,15 @@ const addListenersForPlaylist = () => {
           selected.classList.remove('selected');
         }
         playlistsButtons[i].classList.add('selected');
+        if (!input.value) {
+          button.classList.add('disabled');
+        } else {
+          button.classList.remove('disabled');
+        }
       };
     }
   };
-
-  addListenerToPlaylistButton(document.getElementById('new-playlist-name'));
+  addListenerToNewPlaylistInput(input);
 
   button.onclick = function() {
     modal.style.display = "none";

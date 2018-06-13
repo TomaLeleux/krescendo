@@ -99,7 +99,7 @@
   overflow: hidden;
   transform: scale(0.8);
   transition: 0.5s;
-  .selected ~ & {
+  .selected + & {
     opacity: 1;
     max-height: 100px;
     overflow: visible;
@@ -108,7 +108,7 @@
   }
 }
 
-.selected ~ .reveal-if-active {
+.selected + .reveal-if-active {
   opacity: 1;
   max-height: 100px; /* little bit of a magic number :( */
   overflow: visible;
