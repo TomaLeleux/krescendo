@@ -1,0 +1,19 @@
+<div id="add-playlist-modal" class="modal" style="display: none;">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <div class="modal-header">
+      <span class="close">&times;</span>
+      <h2>Enter the name of the playlist</h2>
+    </div>
+    <div class="modal-body">
+     <%= simple_form_for @playlist do |f| %>
+      <%= f.input :name %>
+    </div>
+    <div class="modal-footer">
+      <%= f.submit class: 'btn btn-primary'%>
+     <% end %>
+    </div>
+  </div>
+
+</div>

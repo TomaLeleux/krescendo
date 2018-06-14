@@ -33,4 +33,25 @@ const listenToPlaylist = () => {
   });
 };
 
+const openModal = () => {
+  const modal = document.getElementById('add-playlist-modal');
+  modal.style.display = "block";
+};
+if (document.getElementById('button-add')){
+document.getElementById('button-add').addEventListener('click',(e)=> {
+  openModal();
+})
+}
+if (document.querySelector('.play-playlist')){
+document.querySelectorAll('.play-playlist').forEach(function(element){
+  element.addEventListener('click',(e) =>{
+    const trackId = element.parentNode.parentNode.dataset.trackid;
+    console.log(element.parentNode.parentNode.dataset.trackid);
+    DZ.player.playTracks([trackId]);
+  })
+})
+
+}
 export { listenToPlaylist/*,  addButtonToPlaylist */ };
+
+
