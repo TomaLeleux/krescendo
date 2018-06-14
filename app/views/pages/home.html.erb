@@ -8,17 +8,17 @@
   <div class="tab-content">
     <div id="popular" class="tab-pane fade in active">
       <div id = 'popular-content'>
-      <%= render 'shared/carroussel' %>
+      <%= render 'shared/carroussel', carousel: "artist_popular" %>
       </div>
     </div>
     <div id = "new" class="tab-pane fade">
       <div id = "new-content">
-      <%= render 'shared/carroussel' %>
+      <%= render 'shared/carroussel', carousel: "artist_new" %>
       </div>
     </div>
     <div id="recommended" class="tab-pane fade">
       <div id = 'recommended-content'>
-        <%= render 'shared/carroussel' %>
+        <%= render 'shared/carroussel', carousel: "artist_recommended" %>
       </div>
     </div>
   </div>

@@ -21,11 +21,18 @@
     height: 27vh;
   }
  }
- .logo-partner {
+
+.btn-default{
+  padding: 15px 20px;
+  border-radius: 15px;
+}
+
+.logo-partner {
   min-height: 130px;
   display: flex;
   align-items: center;
   justify-content: space-around;
+
  }
 
 // .landing p {
