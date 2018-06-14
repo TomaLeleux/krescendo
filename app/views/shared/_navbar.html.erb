@@ -20,21 +20,7 @@
       </div>
         <% end %>
       <div class="flex-item navlink">
-        <% if current_user.playlists.empty? %>
         <%= link_to "Playlist", playlists_path %>
-        <% else %>
-        <div class="dropdown">
-          <button class="dropdown-btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-            Playlists
-            <i class="fa fa-caret-down" aria-hidden="true"></i>
-          </button>
-          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-            <% current_user.playlists.each do |playlist| %>
-              <li><%= link_to playlist.name, '#' %></li>
-            <% end %>
-          </ul>
-        </div>
-        <% end %>
       </div>
 
       <div class="flex-item navlink">
