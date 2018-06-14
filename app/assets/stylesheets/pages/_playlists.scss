@@ -1,0 +1,33 @@
+.delete-playlist {
+  width: 100%;
+  text-align: right;
+}
+
+.playlist-table td{
+  font-size: 14px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  width: 20%;
+  border-bottom: 1px solid rgba(238,238,238,0.2);
+}
+
+
+.playlist-table th{
+  width: auto!important;
+}
+
+.action-playlist{
+  width: 20%!important;
+}
+
+.playlist-container .tab-self a {
+  padding: 10px 10px!important;
+}
+
+.playlist-container{
+  // overflow: auto;
+  height: auto;
+}
+.playlist{
+  box-shadow: none;
+}
