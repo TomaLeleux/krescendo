@@ -1,29 +1,4 @@
-<% #@playlists.each do |playlist| %>
-<% # render 'components/playlist_test', playlist: playlist %>
-<% #end %>
- <%= render 'shared/modal_add_playlist'%>
-<button class="btn btn-danger" id="button-add">Create a new playlist</button>
-
-<div class="container-home-artist playlist-container">
-  <ul class="nav nav-tabs">
-    <% @playlists.each_with_index do |playlist, index| %>
-    <% if index == 0 %>
-    <li class="active tab-self" data-tabplaylist-id='<%= @playlist.id %>'>
-    <% else %>
-    <li class="tab-self" data-tabplaylist-id='<%= @playlist.id %>'>
-    <% end %>
-      <a data-toggle="tab" href=<%= "\##{playlist.name}"%> class="link-tab" data-playlist-id='<%= @playlist.id %>'><h3><%= playlist.name%></h3></a>
-    </li>
-    <% end %>
-  </ul>
-  <div class="tab-content">
-  <% @playlists.each_with_index do |playlist, index| %>
-  <% if index == 0 %>
-    <div id=<%= playlist.name %> class="tab-pane fade in active">
-    <% else %>
-    <div id=<%= playlist.name %> class="tab-pane fade">
-    <% end %>
-      <div class="container-common playlist" data-playlist-id='<%= playlist.id %>'>
+<div class="container-common playlist" data-playlist-id='<%= playlist.id %>'>
 <!--   <div class="flex-container">
     <i class="fa fa-caret-right fa-3" aria-hidden="true"></i>
     <h3 class='inline'><%# playlist.name %></h3> -->
@@ -34,7 +9,7 @@
   </div>
   <!-- </div> -->
   <div class="tracks-list">
-    <table class="playlist-table">
+    <table class="table playlist-table">
       <tr>
         <th><h4>Track name</h4></th>
         <th><h4>Album</h4></th>
@@ -54,9 +29,5 @@
         </tr>
       <% end %>
     </table>
-  </div>
-</div>
-    </div>
-  <% end %>
   </div>
 </div>
