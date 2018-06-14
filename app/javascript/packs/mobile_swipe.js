@@ -52,7 +52,7 @@ function myfunction(el,d) {
         }
       }
     }
-  }else if (d == 'l'){
+  } else if (d == 'l'){
     const listChild = document.querySelector('.carousel-inner').children;
     for (i=0;i<listChild.length;i++) {
       if (listChild[i].classList.contains('active')){
