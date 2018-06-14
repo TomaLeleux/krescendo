@@ -1,5 +1,5 @@
+<div><h2>Artists</h2></div>
 <div class="container-home-artist">
-
   <div class="tab-content">
     <% if @artists["data"].empty? %>
       <h2 class="text-center">No artists found</h2>
@@ -22,13 +22,13 @@
     <% end %>
   </div>
 </div>
-
+<div><h2>Albums</h2></div>
 <div class="container-search-albums">
   <div class="tab-content">
     <% if @albums["data"].empty? %>
       <h2 class="text-center">No albums found</h2>
     <% else %>
-      <%= render 'shared/test_carroussel' %>
+      <%= render 'shared/search_album_carroussel' %>
     <% end %>
   </div>
 </div>

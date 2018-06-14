@@ -6,21 +6,24 @@
   </div>
   <div class="banner-txt">
     <% unless current_page?(root_path) %>
-    <div class="banner-title">Explore all possibilities of music</div>
+    <div class="banner-title"><h1>Explore all possibilities of music</h1></div>
     <% else %>
-    <div class="banner-title">Crescendo</div>
+    <div class="banner-title"><h1>Crescendo</h1></div>
     <% end %>
   </div>
   <div class="dropdown hidden-md hidden-lg">
       <i class="fa fa-bars dropdown-toggle" data-toggle="dropdown"></i>
       <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
         <% if user_signed_in? %>
-          <li><span class = "fa fa-play"></span> <%= link_to "Playlist", playlists_path %></li>
-          <li><span class = "fa fa-play"></span> <%= link_to "Profile", edit_user_registration_path %></li>
-          <li><span class = "fa fa-eject"></span> <%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
+          <% unless current_page?(home_path) %>
+            <li><%= link_to "News", home_path %></li>
+          <% end %>
+          <li><%= link_to "Playlist", playlists_path %></li>
+          <li><%= link_to "Profile", edit_user_registration_path %></li>
+          <li><%= link_to "Logout", destroy_user_session_path, method: :delete %></li>
         <% else %>
-          <li><span class = "fa fa-play"></span> <%= link_to "  Login", new_user_session_path %></li>
-          <li><span class = "fa fa-play"></span> <%= link_to "  Sign-up", new_user_registration_path %></li>
+          <li><%= link_to "  Login", new_user_session_path %></li>
+          <li><%= link_to "  Sign-up", new_user_registration_path %></li>
         <% end %>
       </ul>
     </div>

@@ -15,7 +15,7 @@ $navbar-width: 200px;
 }
 
 .right-container{
-  padding: 40px 40px 0px 40px;
+  padding: 0px 40px 0px 40px;
   width: 100%;
   height: calc(100vh - 70px);
   background-color: $color4;
@@ -33,6 +33,7 @@ $navbar-width: 200px;
     height: 10%;
   }
   .right-container{
+    height: 81vh;
     margin: 0px;
     padding: 10px 20px 0px 20px;
   }
