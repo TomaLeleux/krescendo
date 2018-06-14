@@ -125,7 +125,6 @@ const addListenersForPlaylist = () => {
 if (document.querySelector('.details-body')){
   const idAlbum =  document.querySelector('.album-id').dataset.album
   let i = 'first'
-  console.log(idAlbum);
   addListenersForPlaylist();
     // axios.get(`/albumtracks/${parseInt(idAlbum)}`  ,{responseType:'json'})
     axios({
@@ -168,6 +167,8 @@ if (document.querySelector('.details-body')){
           document.getElementById(`${element['id']}`).parentNode.querySelector('.play-track').addEventListener('click', trackRefresh, false);
           document.getElementById(`${element['id']}`).parentNode.querySelector('.scroll-to-video').addEventListener('click', scrolltoVideo, false);
           document.getElementById(`${element['id']}`).parentNode.querySelector('.scroll-to-lyrics').addEventListener('click', scrolltoLyrics, false);
+          document.getElementById(`${element['id']}`).parentNode.querySelector('.scroll-to-video').addEventListener('click', trackRefresh, false);
+          document.getElementById(`${element['id']}`).parentNode.querySelector('.scroll-to-lyrics').addEventListener('click', trackRefresh, false);
 
           i = '';
         }else{
@@ -200,6 +201,8 @@ if (document.querySelector('.details-body')){
           document.getElementById(`${element['id']}`).parentNode.querySelector('.play-track').addEventListener('click', trackRefresh, false);
           document.getElementById(`${element['id']}`).parentNode.querySelector('.scroll-to-video').addEventListener('click', scrolltoVideo, false);
           document.getElementById(`${element['id']}`).parentNode.querySelector('.scroll-to-lyrics').addEventListener('click', scrolltoLyrics, false);
+          document.getElementById(`${element['id']}`).parentNode.querySelector('.scroll-to-video').addEventListener('click', trackRefresh, false);
+          document.getElementById(`${element['id']}`).parentNode.querySelector('.scroll-to-lyrics').addEventListener('click', trackRefresh, false);
           document.getElementById(`${element['id']}`).parentNode.querySelector('.add-to-playlist').onclick = function () {
             addListenerToButton(element['id']);
           };

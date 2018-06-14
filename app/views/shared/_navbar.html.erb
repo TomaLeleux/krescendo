@@ -14,41 +14,44 @@
     </div>
     <div class="flex-group player-on">
       <% if user_signed_in? %>
+        <% unless current_page?(home_path) %>
+      <div class="flex-item navlink">
+        <%= link_to "News", home_path %>
+      </div>
+        <% end %>
+      <div class="flex-item navlink">
+        <% if current_user.playlists.empty? %>
+        <%= link_to "Playlist", playlists_path %>
+        <% else %>
+        <div class="dropdown">
+          <button class="dropdown-btn dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+            Playlists
+            <i class="fa fa-caret-down" aria-hidden="true"></i>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+            <% current_user.playlists.each do |playlist| %>
+              <li><%= link_to playlist.name, '#' %></li>
+            <% end %>
+          </ul>
+        </div>
+        <% end %>
+      </div>
+
+      <div class="flex-item navlink">
+        <%= link_to "Profile", edit_user_registration_path %>
+      </div>
 
         <div class="flex-item navlink ">
-          <span class = "fa fa-eject"></span> <%= link_to "Logout", destroy_user_session_path, method: :delete %>
+           <%= link_to "Logout", destroy_user_session_path, method: :delete %>
         </div>
-
-        <div class="flex-item navlink">
-          <% if current_user.playlists.empty? %>
-            <span class = "fa fa-play"></span> <%= link_to "Playlist", playlists_path %>
-          <% else %>
-            <button class="dropdown-btn">
-              Playlists
-              <i class="fa fa-caret-down"></i>
-            </button>
-            <div class="dropdown-container">
-              <ul>
-                <% current_user.playlists.each do |playlist| %>
-                  <li><%= link_to playlist.name, '#' %></li>
-                <% end %>
-              </ul>
-            </div>
-          <% end %>
-        </div>
-
-        <div class="flex-item navlink">
-          <span class = "fa fa-play"></span> <%= link_to "Profile", edit_user_registration_path %>
-        </div>
-
       <% else %>
 
-        <div class="flex-item navlink">
-          <span class = "fa fa-play"></span> <%= link_to "  Login", new_user_session_path %>
-        </div>
-        <div class="flex-item navlink">
-          <span class = "fa fa-play"></span> <%= link_to "  Sign-up", new_user_registration_path %>
-        </div>
+      <div class="flex-item navlink">
+        <%= link_to "  Login", new_user_session_path %>
+      </div>
+      <div class="flex-item navlink">
+        <%= link_to "  Sign-up", new_user_registration_path %>
+      </div>
 
       <% end %>
     </div>

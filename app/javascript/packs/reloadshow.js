@@ -7,7 +7,6 @@ import {scrolltoVideo} from './loadtracksinshow.js'
 const wscreen = window.innerWidth;
 function trackRefresh() {
   const trackOnAir = this.parentNode.firstElementChild;
-  console.log(this.parentNode);
   document.querySelector(".on-air").classList.remove("on-air");
   this.parentNode.classList.add("on-air");
   const trackId = trackOnAir.getAttribute("id");
@@ -31,12 +30,10 @@ function trackRefresh() {
 
 function albumrefresh(){
   let listAlbum = document.getElementById('tracklist');
-  listAlbum.children[0].classList.add('on-air');
   while (listAlbum.children.length > 1) {
     listAlbum.removeChild(listAlbum.lastChild);
   }
   const albumId = parseInt(this.dataset.album);
-  const targetTrack = document.querySelector(".first-track");
   let i = 'first';
   axios({
     method:'get',
@@ -80,7 +77,8 @@ function albumrefresh(){
           document.getElementById(`${element['id']}`).parentNode.querySelector('.play-track').addEventListener('click', trackRefresh, false);
           document.getElementById(`${element['id']}`).parentNode.querySelector('.scroll-to-video').addEventListener('click', scrolltoVideo, false);
           document.getElementById(`${element['id']}`).parentNode.querySelector('.scroll-to-lyrics').addEventListener('click', scrolltoLyrics, false);
-
+          document.getElementById(`${element['id']}`).parentNode.querySelector('.scroll-to-video').addEventListener('click', trackRefresh, false);
+          document.getElementById(`${element['id']}`).parentNode.querySelector('.scroll-to-lyrics').addEventListener('click', trackRefresh, false);
           i = '';
         }else{
           //add in track list the other tracks with class active
@@ -112,13 +110,16 @@ function albumrefresh(){
           document.getElementById(`${element['id']}`).parentNode.querySelector('.play-track').addEventListener('click', trackRefresh, false);
           document.getElementById(`${element['id']}`).parentNode.querySelector('.scroll-to-video').addEventListener('click', scrolltoVideo, false);
           document.getElementById(`${element['id']}`).parentNode.querySelector('.scroll-to-lyrics').addEventListener('click', scrolltoLyrics, false);
-
+          document.getElementById(`${element['id']}`).parentNode.querySelector('.scroll-to-video').addEventListener('click', trackRefresh, false);
+          document.getElementById(`${element['id']}`).parentNode.querySelector('.scroll-to-lyrics').addEventListener('click', trackRefresh, false);
           document.getElementById(`${element['id']}`).parentNode.querySelector('.add-to-playlist').onclick = function () {
             addListenerToButton(element['id']);
           };
         }
       });
       //add in lyrics the first track
+      const targetTrack = document.querySelector(".first-track");
+      console.log(targetTrack);
       let idTrack = parseInt(targetTrack.getAttribute("id"));
       axios({
         method:'get',
@@ -137,11 +138,9 @@ function albumrefresh(){
 }
 
 function loadAlbum(){
-  console.log('1')
   if (document.querySelector('.album-id')){
     const classalbum = document.querySelectorAll('.target-album-image');
     for (var y = 0; y < classalbum.length; y++) {
-      console.log('done')
       classalbum[y].addEventListener('click', albumrefresh, false);
     }
   }
