@@ -2,6 +2,7 @@
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 20px;
+  position: relative;
   h3 {
     font-size: 23px;
     margin-top: 0;
@@ -11,17 +12,26 @@
   }
   margin-bottom: 20px;
 }
-
+.playlist-delete{
+  position: absolute;
+  top : -56px;
+  right: -3px;
+  color: $font;
+}
 .fa-3 {
   font-size: 38px;
 }
 
 table {
-  margin-left: 30px;
+  // margin-left: 15px;
   width: 100%;
-  th, td {
+  td {
     text-align: center;
-    width: 25%;
+    // width: 25%;
+    padding: 5px 10px;
+  }
+  th {
+    text-align: center;
   }
 }
 
@@ -42,7 +52,11 @@ table {
   transition: all .5s ease;
 }
 
+
+@media (max-width: 800px) {
 .playlist-delete {
-  right: 20px;
-  position: absolute;
+    top: -32px;
+    right: 12px;
+}
+
 }

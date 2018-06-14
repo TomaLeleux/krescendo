@@ -14,11 +14,9 @@
     </div>
     <div class="flex-group player-on">
       <% if user_signed_in? %>
-        <% unless current_page?(home_path) %>
       <div class="flex-item navlink">
         <%= link_to "News", home_path %>
       </div>
-        <% end %>
       <div class="flex-item navlink">
         <%= link_to "Playlist", playlists_path %>
       </div>
