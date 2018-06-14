@@ -34,6 +34,10 @@ class ApplicationController < ActionController::Base
     home_path
   end
 
+  def after_sign_in_path_for(resource_or_scope)
+    home_path
+  end
+
   def skip_pundit?
     devise_controller? || params[:controller] =~ /(^(rails_)?admin)|(^pages$)/
   end
