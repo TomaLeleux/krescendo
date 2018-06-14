@@ -1,6 +1,7 @@
 <% content_for :meta_title, "#{@artist["name"]} is on #{DEFAULT_META["meta_product_name"]}" %>
 <% content_for :meta_image, image_path(@artist["picture_medium"]) %>
 <%= render 'shared/modal_playlist', options: @playlist_option_for_form %>
+<div><h2>Your selection</h2></div>
 <div class="container-artist-information">
   <div class="artist-data-mobile">
     <div class="info-artist">
@@ -28,8 +29,8 @@
   </div>
   <div class="container">
     <ul class="nav nav-tabs">
-      <li class="active tab-self"><a data-toggle="tab" href="#albums">Albums</a></li>
-      <li class="tab-self"><a data-toggle="tab" href="#related">Artists related</a></li>
+      <li class="active tab-self"><a data-toggle="tab" href="#albums"><h3>Albums</h3></a></li>
+      <li class="tab-self"><a data-toggle="tab" href="#related"><h3>Artists related</h3></a></li>
     </ul>
     <div class="tab-content">
       <div id="albums" class="tab-pane fade in active">
@@ -49,7 +50,7 @@
  <div class="right-side">
   <div class="left-side">
     <div class="table-title">
-    <h3>Tracks</h3>
+    <h3 class='h3-no-tab'>Tracks</h3>
     </div>
     <table class="table" id="tracklist">
       <tbody>
@@ -60,7 +61,7 @@
   <div class="row">
     <div class="col-xs-12 col-md-6 space-padding">
       <div class="card-show">
-        <h5>Video</h5>
+         <h3 class='h3-no-tab'>Video</h3>
         <div class="video-container">
         <iframe id="player" type="text/html" width="640" height="360"
         src=""
@@ -72,7 +73,7 @@
       <div class="card-show">
         <div class="option-lyrics">
           <div class="title-lyrics">
-            <h5>Lyrics</h5>
+             <h3 class='h3-no-tab'>Lyrics</h3>
           </div>
           <span id="menu-lyrics">
             <i class="fa fa-play-circle" id="scroll" aria-hidden="true"></i>
