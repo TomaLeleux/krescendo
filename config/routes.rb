@@ -1,10 +1,5 @@
 Rails.application.routes.draw do
   devise_for :users
-
-  authenticated :user do
-    root 'pages#home', as: :authenticated_root
-  end
-
   root to: 'pages#landing'
   scope '/user' do
     resources :playlists, only: [:index, :create, :update, :destroy]
