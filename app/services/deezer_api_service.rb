@@ -2,6 +2,8 @@ require 'rest-client'
 require 'json'
 require 'ohm'
 
+BAD_URL = "dzcdn.net/images/artist//250x250-000000-80-0-0.jpg"
+
 class DeezerApiService
   def self.call(id)
     music = Ohm.redis.call "GET", id
@@ -99,15 +101,11 @@ class DeezerApiService
   end
 
   def self.valid_artist
-    bad_url = "//250x250-000000-80-0-0.jpg"
     id = rand(1...4000)
     music = DeezerApiService.call(id)
-    while music["error"] do
+    while music["error"] || music["picture_medium"].include?(BAD_URL) do
       id = rand(1...4000)
       music = DeezerApiService.call(id)
-    end
-    if music["picture_medium"].include? bad_url
-      valid_artist
     end
     return music
   end
