@@ -2,7 +2,11 @@
   <% music = DeezerApiService.valid_artist %>
   <%= link_to details_path(music["id"]), class: 'clickable-card' do %>
     <div class="artist text-center">
+      <% if music["picture_medium"] == "https://e-cdns-images.dzcdn.net/images/artist//250x250-000000-80-0-0.jpg" || music["picture_medium"] == 'https://cdns-images.dzcdn.net/images/artist//250x250-000000-80-0-0.jpg' %>
+      <%= image_tag asset_path('placeholder.png'), alt: 'Artist photo', class: 'artist-photo' %>
+      <% else %>
       <%= image_tag music["picture_medium"], alt: 'Artist photo', class: 'artist-photo' %>
+      <% end %>
       <h3 class="artist-name"><%= music["name"] %></h3>
       <p class="artist-style"></p>
     </div>

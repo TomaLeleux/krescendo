@@ -33,7 +33,8 @@
     text-align: center;
     color: $color4;
   }
-  background: linear-gradient(rgba(13,18,25,0.9),rgba(13,18,25,0.7));
+  // background: linear-gradient(rgba(13,18,25,0.9),rgba(13,18,25,0.7));
+  background: $background;
   width: 100%;
   border-radius: 4px;
   box-shadow: 1px 1px 2px $color2;

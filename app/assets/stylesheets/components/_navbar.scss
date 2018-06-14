@@ -58,7 +58,7 @@ $font-w: 500;
   *:hover{
     transition: color 0.7s, font-weight 0.7s;
     text-decoration: none;
-    color: white;
+    color: $font;
   }
 }
 .flex-item {
@@ -81,7 +81,7 @@ $font-w: 500;
   *:hover{
     transition: 1s;
     text-decoration: none;
-    color: white;
+    color: $font;
   }
 }
 
