@@ -11,6 +11,7 @@ class PlaylistsController < ApplicationController
     authorize @playlist
     @playlist.user = current_user
     if @playlist.save
+      flash[:notice] = "Your playlist has been created"
       redirect_to playlists_path
     else
       render :index
@@ -21,6 +22,7 @@ class PlaylistsController < ApplicationController
     @playlist = Playlist.find(params[:id])
     authorize @playlist
     @playlist.update(playlist_params)
+    flash[:notice] = "Your playlist has been updated"
     redirect_to playlists_path
   end
 
@@ -28,6 +30,7 @@ class PlaylistsController < ApplicationController
     @playlist = Playlist.find(params[:id])
     authorize @playlist
     @playlist.destroy
+    flash[:notice] = "Your playlist has been deleted"
   end
 
   private
