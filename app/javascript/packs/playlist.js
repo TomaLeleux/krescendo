@@ -36,7 +36,32 @@ const listenToPlaylist = () => {
 const openModal = () => {
   const modal = document.getElementById('add-playlist-modal');
   modal.style.display = "block";
+  const th = document.getElementsByClassName("close1")[0];
+  window.onclick = function(event) {
+  const modal = document.getElementById('add-playlist-modal');
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+  th.onclick = function() {
+  const modal = document.getElementById('add-playlist-modal');
+    modal.style.display = "none";
+  }
 };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 if (document.getElementById('button-add')){
 document.getElementById('button-add').addEventListener('click',(e)=> {
   openModal();

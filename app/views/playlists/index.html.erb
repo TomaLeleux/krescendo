@@ -1,62 +1,74 @@
 <% #@playlists.each do |playlist| %>
 <% # render 'components/playlist_test', playlist: playlist %>
 <% #end %>
- <%= render 'shared/modal_add_playlist'%>
-<button class="btn btn-danger" id="button-add">Create a new playlist</button>
-
+<%= render 'shared/modal_add_playlist'%>
+<% if @playlists.length == 0 %>
+  <div id="no-playlist" class="text-center">
+    <h2>You don't have any playlist, let's create the first one now</h2>
+    <div class="add-fucking-playlist centered" >
+      <i class="fa fa-plus-circle" id="button-add" aria-hidden="true"><span>Create a new playlist</span></i>
+    </div>
+  </div>
+  <% else %>
+<div class="add-fucking-playlist" >
+  <i class="fa fa-plus-circle" id="button-add" aria-hidden="true"><span>Create a new playlist</span></i>
+</div>
+<% end %>
+<% if @playlists.length > 0 %>
 <div class="container-home-artist playlist-container">
   <ul class="nav nav-tabs">
     <% @playlists.each_with_index do |playlist, index| %>
     <% if index == 0 %>
     <li class="active tab-self" data-tabplaylist-id='<%= @playlist.id %>'>
-    <% else %>
-    <li class="tab-self" data-tabplaylist-id='<%= @playlist.id %>'>
-    <% end %>
-      <a data-toggle="tab" href=<%= "\##{playlist.name}"%> class="link-tab" data-playlist-id='<%= @playlist.id %>'><h3><%= playlist.name%></h3></a>
-    </li>
-    <% end %>
-  </ul>
-  <div class="tab-content">
-  <% @playlists.each_with_index do |playlist, index| %>
-  <% if index == 0 %>
-    <div id=<%= playlist.name %> class="tab-pane fade in active">
-    <% else %>
-    <div id=<%= playlist.name %> class="tab-pane fade">
-    <% end %>
-      <div class="container-common playlist" data-playlist-id='<%= playlist.id %>'>
+      <% else %>
+      <li class="tab-self" data-tabplaylist-id='<%= @playlist.id %>'>
+        <% end %>
+        <a data-toggle="tab" href=<%= "\##{playlist.name}"%> class="link-tab" data-playlist-id='<%= @playlist.id %>'><h3><%= playlist.name%></h3></a>
+      </li>
+      <% end %>
+    </ul>
+    <div class="tab-content">
+      <% @playlists.each_with_index do |playlist, index| %>
+      <% if index == 0 %>
+      <div id=<%= playlist.name %> class="tab-pane fade in active">
+        <% else %>
+        <div id=<%= playlist.name %> class="tab-pane fade">
+          <% end %>
+          <div class="container-common playlist" data-playlist-id='<%= playlist.id %>'>
 <!--   <div class="flex-container">
     <i class="fa fa-caret-right fa-3" aria-hidden="true"></i>
     <h3 class='inline'><%# playlist.name %></h3> -->
-  <div class="delete-playlist">
-    <%= link_to playlist, method: :delete, data: { confirm: "Are you sure ?" }, class: 'playlist-delete', remote: true do %>
+    <div class="delete-playlist">
+      <%= link_to playlist, method: :delete, data: { confirm: "Are you sure ?" }, class: 'playlist-delete', remote: true do %>
       <i class="fa fa-trash" aria-hidden="true">  delete the playlist</i>
-    <%  end %>
-  </div>
-  <!-- </div> -->
-  <div class="tracks-list">
-    <table class="playlist-table">
-      <tr>
-        <th><h4>Track name</h4></th>
-        <th><h4>Album</h4></th>
-        <th><h4>Artist</h4></th>
-        <th colspan="2" class="action-playlist"><h4>Actions</h4></th>
-      </tr>
-      <% playlist.tracks.each do |track| %>
+      <%  end %>
+    </div>
+    <!-- </div> -->
+    <div class="tracks-list">
+      <table class="playlist-table">
+        <tr>
+          <th><h4>Track name</h4></th>
+          <th><h4>Album</h4></th>
+          <th><h4>Artist</h4></th>
+          <th colspan="2" class="action-playlist"><h4>Actions</h4></th>
+        </tr>
+        <% playlist.tracks.each do |track| %>
         <tr data-track-id='<%= track.id %>' data-trackid='<%= track.track_id %>'>
           <td><%= DeezerApiService.track(track.track_id)['title'] %></td>
           <td><%= track.album_id.nil? ? 'No album' : DeezerApiService.album(track.album_id)['title'] %></td>
           <td><%= track.artist_id.nil? ? 'No artist' : DeezerApiService.artist(track.artist_id)['name'] %></td>
-          <td><i class="fa fa-play play-playlist" aria-hidden="true"> play track</i></td>
+          <td><i class="fa fa-play play-playlist" aria-hidden="true"><span class="hidden-xs hidden-sm">  play track</span></i></td>
           <td><%= link_to track, method: :delete, remote: true do %>
-              <i class="fa fa-trash" aria-hidden="true"> remove track</i>
+            <i class="fa fa-trash" aria-hidden="true"><span class="hidden-xs hidden-sm">  remove track</span></i>
             <% end %>
           </td>
         </tr>
-      <% end %>
-    </table>
-  </div>
-</div>
+        <% end %>
+      </table>
     </div>
-  <% end %>
   </div>
 </div>
+<% end %>
+</div>
+</div>
+<% end %>

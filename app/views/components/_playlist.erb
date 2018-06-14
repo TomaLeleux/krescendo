@@ -3,7 +3,7 @@
     <i class="fa fa-caret-right fa-3" aria-hidden="true"></i>
     <h3 class='inline'><%= playlist.name %></h3>
     <%= link_to playlist, method: :delete, data: { confirm: "Are you sure ?" }, class: 'playlist-delete', remote: true do %>
-      <i class="fa fa-trash" aria-hidden="true"></i>
+      <i class="fa fa-trash delete-playlist" aria-hidden="true"></i>
     <% end %>
   </div>
   <div class="tracks-list playlist-description">

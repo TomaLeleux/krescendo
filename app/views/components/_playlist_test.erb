@@ -21,9 +21,9 @@
           <td><%= DeezerApiService.track(track.track_id)['title'] %></td>
           <td><%= track.album_id.nil? ? 'No album' : DeezerApiService.album(track.album_id)['title'] %></td>
           <td><%= track.artist_id.nil? ? 'No artist' : DeezerApiService.artist(track.artist_id)['name'] %></td>
-          <td><i class="fa fa-play play-playlist" aria-hidden="true"> play track</i></td>
+          <td><i class="fa fa-play play-playlist" aria-hidden="true"><span class="hidden-xs hidden-sm"> play track<span></i></td>
           <td><%= link_to track, method: :delete, remote: true do %>
-              <i class="fa fa-trash" aria-hidden="true"> remove track</i>
+              <i class="fa fa-trash" aria-hidden="true"><span class="hidden-xs hidden-sm"> remove track</span></i>
             <% end %>
           </td>
         </tr>
