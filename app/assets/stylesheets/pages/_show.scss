@@ -94,6 +94,10 @@ cursor: pointer;
   width:50%;
 }
 
+.no-result{
+  color: $font;
+}
+
 @media (max-width: 800px) {
   #player{
     height: 80%;

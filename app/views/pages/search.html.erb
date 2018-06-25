@@ -2,7 +2,7 @@
 <div class="container-home-artist">
   <div class="tab-content">
     <% if @artists["data"].empty? %>
-      <h2 class="text-center">No artists found</h2>
+      <h2 class="text-center no-result">No artists found</h2>
     <% else %>
       <div id="popular" class="tab-pane fade in active">
         <div id = 'popular-content'>
@@ -26,7 +26,7 @@
 <div class="container-search-albums">
   <div class="tab-content">
     <% if @albums["data"].empty? %>
-      <h2 class="text-center">No albums found</h2>
+      <h2 class="text-center no-result">No albums found</h2>
     <% else %>
       <%= render 'shared/search_album_carroussel' %>
     <% end %>
